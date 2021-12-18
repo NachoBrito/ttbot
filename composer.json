@@ -1,0 +1,14 @@
+{
+    "name": "nachobrito/ttbot",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "NachoBrito\\TTBot\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpstan/phpstan": "^1.2"
+    }
+}
