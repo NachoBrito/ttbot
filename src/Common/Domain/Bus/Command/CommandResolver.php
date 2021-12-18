@@ -1,4 +1,4 @@
-<?php
+<?php declare( strict_types=1 );
 
 namespace NachoBrito\TTBot\Common\Domain\Bus\Command;
 
@@ -11,7 +11,7 @@ interface CommandResolver {
     /**
      * 
      * @param iterable<CommandHandler> $handlers
-     * @return array<string,string>
+     * @return array<string,array<int, CommandHandler>>
      */
     public function buildHandlersMap(iterable $handlers):array;
 

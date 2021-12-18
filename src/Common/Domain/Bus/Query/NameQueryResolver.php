@@ -1,4 +1,4 @@
-<?php
+<?php declare( strict_types=1 );
 
 namespace NachoBrito\TTBot\Common\Domain\Bus\Query;
 
@@ -25,21 +25,27 @@ class NameQueryResolver implements QueryResolver {
         return $handler_class;
     }
 
+
     /**
      * 
-     * @param type $query_class
+     * @param string $query_class
+     * @return void
+     * @throws InvalidQueryException
      */
-    private function validateQueryClass($query_class) {
+    private function validateQueryClass(string $query_class):void {
         if (!preg_match('/Query$/', $query_class)) {
             throw new InvalidQueryException("Class $query_class is not a valid query class name. Suffix 'Query' is mandatory.");
         }
     }
     
+
     /**
      * 
-     * @param type $handler_class
+     * @param string $handler_class
+     * @return void
+     * @throws InvalidHandlerException
      */
-    private function validateHandlerClass($handler_class) {
+    private function validateHandlerClass(string $handler_class):void {
         if (!preg_match('/Handler$/', $handler_class)) {
             throw new InvalidHandlerException("Class $handler_class is not a valid query handler class name. Suffix 'Handler' is mandatory.");
         }
@@ -47,9 +53,10 @@ class NameQueryResolver implements QueryResolver {
 
     /**
      * 
-     * @param iterable $handlers
+     * @param iterable<QueryHandler> $handlers
+     * @return array<string,array<int, QueryHandler>>
      */
-    public function buildHandlersMap(iterable $handlers) {
+    public function buildHandlersMap(iterable $handlers):array {
         $map = [];
         foreach($handlers as $handler)
         {

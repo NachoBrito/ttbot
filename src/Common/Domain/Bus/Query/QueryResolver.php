@@ -1,4 +1,4 @@
-<?php
+<?php declare( strict_types=1 );
 
 namespace NachoBrito\TTBot\Common\Domain\Bus\Query;
 
@@ -10,9 +10,10 @@ interface QueryResolver {
 
     /**
      * 
-     * @param iterable $handlers
+     * @param iterable<QueryHandler> $handlers
+     * @return array<string,array<int, QueryHandler>>
      */
-    public function buildHandlersMap(iterable $handlers);
+    public function buildHandlersMap(iterable $handlers): array;
 
 
     /**

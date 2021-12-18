@@ -1,4 +1,4 @@
-<?php
+<?php declare( strict_types=1 );
 
 namespace NachoBrito\TTBot\Common\Domain\Bus\Query;
 
@@ -17,7 +17,7 @@ interface Result {
     
     /**
      * 
-     * @return array
+     * @return Traversable<mixed>
      */
     public function getItems(): Traversable;
 }

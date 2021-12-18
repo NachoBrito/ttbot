@@ -1,4 +1,4 @@
-<?php
+<?php declare( strict_types=1 );
 
 namespace NachoBrito\TTBot\Common\Domain\Bus\Command;
 
@@ -24,21 +24,27 @@ class NameCommandResolver implements CommandResolver {
         return $handler_class;
     }
 
+
     /**
      * 
-     * @param type $command_class
+     * @param string $command_class
+     * @return void
+     * @throws InvalidCommandException
      */
-    private function validateCommandClass($command_class) {
+    private function validateCommandClass(string $command_class):void {
         if (!preg_match('/Command$/', $command_class)) {
             throw new InvalidCommandException("Class $command_class is not a valid command class name. Suffix 'Command' is mandatory.");
         }
     }
     
+
     /**
      * 
-     * @param type $handler_class
+     * @param string $handler_class
+     * @return void
+     * @throws InvalidHandlerException
      */
-    private function validateHandlerClass($handler_class) {
+    private function validateHandlerClass(string $handler_class):void {
         if (!preg_match('/Handler$/', $handler_class)) {
             throw new InvalidHandlerException("Class $handler_class is not a valid command handler class name. Suffix 'Handler' is mandatory.");
         }
@@ -61,9 +67,9 @@ class NameCommandResolver implements CommandResolver {
     /**
      * 
      * @param iterable<CommandHandler> $handlers
-     * @return array<string,string>
+     * @return array<string,array<int, CommandHandler>>
      */
-    public function buildHandlersMap(iterable $handlers):string {
+    public function buildHandlersMap(iterable $handlers):array {
         $map = [];
         foreach($handlers as $handler)
         {
