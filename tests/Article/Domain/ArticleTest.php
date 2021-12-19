@@ -18,7 +18,7 @@ class ArticleTest extends TestCase {
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp() {
+    protected function setUp(): void {
         $this->object = new Article;
     }
 
@@ -26,7 +26,7 @@ class ArticleTest extends TestCase {
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown() {
+    protected function tearDown(): void {
         
     }
 
@@ -39,7 +39,6 @@ class ArticleTest extends TestCase {
         self::assertSame('url', $this->object->getUrl());
     }
 
-
     /**
      * @covers NachoBrito\TTBot\Article\Domain\Article::getTitle
      * @todo   Implement testGetTitle().
@@ -49,16 +48,14 @@ class ArticleTest extends TestCase {
         self::assertSame("title", $this->object->getTitle());
     }
 
-
     /**
      * @covers NachoBrito\TTBot\Article\Domain\Article::getText
      * @todo   Implement testGetText().
      */
     public function testGetText() {
         $this->object->setText("text");
-        self::assertSame($this->object->getText());
+        self::assertSame("text", $this->object->getText());
     }
-
 
     /**
      * @covers NachoBrito\TTBot\Article\Domain\Article::getMetadata
