@@ -34,3 +34,7 @@ jobs:
 
     - name: Run test suite
       run:  php -dxdebug.mode=coverage vendor/bin/phpunit
+      
+    - name: Coverage bbadge
+      run:  phpunit-coverage-badge
+      
