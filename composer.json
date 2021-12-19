@@ -2,6 +2,11 @@
     "name": "nachobrito/ttbot",
     "type": "project",
     "license": "MIT",
+    "description": "Text Tools TwitterBot",
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },    
     "autoload": {
         "psr-4": {
             "NachoBrito\\TTBot\\": "src/"
