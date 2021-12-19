@@ -35,7 +35,7 @@ class ArticleTest extends TestCase {
      * @todo   Implement testGetUrl().
      */
     public function testGetUrl() {
-        $this->object->setUrl('url');
+        self::assertSame($this->object, $this->object->setUrl('url'));
         self::assertSame('url', $this->object->getUrl());
     }
 
@@ -44,7 +44,7 @@ class ArticleTest extends TestCase {
      * @todo   Implement testGetTitle().
      */
     public function testGetTitle() {
-        $this->object->setTitle("title");
+        self::assertSame($this->object, $this->object->setTitle("title"));
         self::assertSame("title", $this->object->getTitle());
     }
 
@@ -53,7 +53,7 @@ class ArticleTest extends TestCase {
      * @todo   Implement testGetText().
      */
     public function testGetText() {
-        $this->object->setText("text");
+        self::assertSame($this->object, $this->object->setText("text"));
         self::assertSame("text", $this->object->getText());
     }
 
@@ -63,7 +63,7 @@ class ArticleTest extends TestCase {
      */
     public function testGetMetadata() {
         $o = ["meta" => "data"];
-        $this->object->setMetadata($o);
+        self::assertSame($this->object, $this->object->setMetadata($o));
         self::assertSame($o, $this->object->getMetadata());
     }
 
