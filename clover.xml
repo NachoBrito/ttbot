@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1639907940">
-  <project timestamp="1639907940">
-    <file name="/shared/httpd/ttbot/src/Article/Application/SummarizeArticleCommand.php">
+<coverage generated="1639906978">
+  <project timestamp="1639906978">
+    <file name="/home/runner/work/ttbot/ttbot/src/Article/Application/SummarizeArticleCommand.php">
       <class name="NachoBrito\TTBot\Article\Application\SummarizeArticleCommand" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
       </class>
@@ -215,6 +215,6 @@
       </class>
       <metrics loc="13" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <metrics files="22" loc="692" ncloc="388" classes="7" methods="29" coveredmethods="29" conditionals="0" coveredconditionals="0" statements="72" coveredstatements="72" elements="101" coveredelements="101"/>
+    <metrics files="22" loc="692" ncloc="388" classes="7" methods="29" coveredmethods="23" conditionals="0" coveredconditionals="0" statements="72" coveredstatements="62" elements="101" coveredelements="85"/>
   </project>
 </coverage>
