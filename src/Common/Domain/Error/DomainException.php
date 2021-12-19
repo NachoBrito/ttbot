@@ -5,7 +5,7 @@ use RuntimeException;
 
 /**
  * Description of DomainException
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class DomainException extends RuntimeException{

@@ -4,7 +4,7 @@ namespace NachoBrito\TTBot\Common\Domain\Bus\Command;
 
 /**
  * Description of InvalidHandlerException
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class InvalidHandlerException extends \RuntimeException{

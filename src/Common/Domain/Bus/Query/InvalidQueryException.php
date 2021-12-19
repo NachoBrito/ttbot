@@ -4,7 +4,7 @@ namespace NachoBrito\TTBot\Common\Domain\Bus\Query;
 
 /**
  * Description of InvalidQueryException
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class InvalidQueryException extends \RuntimeException{

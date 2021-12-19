@@ -6,7 +6,7 @@ use Exception;
 
 /**
  * Description of InvalidInputException
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class InvalidInputException extends Exception{
