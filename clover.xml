@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1639904967">
-  <project timestamp="1639904967">
+<coverage generated="1639906978">
+  <project timestamp="1639906978">
     <file name="/home/runner/work/ttbot/ttbot/src/Article/Application/SummarizeArticleCommand.php">
       <class name="NachoBrito\TTBot\Article\Application\SummarizeArticleCommand" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
@@ -31,30 +31,30 @@
     </file>
     <file name="/home/runner/work/ttbot/ttbot/src/Article/Domain/Article.php">
       <class name="NachoBrito\TTBot\Article\Domain\Article" namespace="global">
-        <metrics complexity="8" methods="8" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="8" elements="20" coveredelements="12"/>
+        <metrics complexity="8" methods="8" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="20" coveredelements="20"/>
       </class>
-      <line num="29" type="method" name="getUrl" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="31" type="stmt" count="0"/>
+      <line num="29" type="method" name="getUrl" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="31" type="stmt" count="1"/>
       <line num="41" type="method" name="setUrl" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="43" type="stmt" count="1"/>
       <line num="45" type="stmt" count="1"/>
-      <line num="53" type="method" name="getTitle" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="55" type="stmt" count="0"/>
+      <line num="53" type="method" name="getTitle" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="55" type="stmt" count="1"/>
       <line num="65" type="method" name="setTitle" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="67" type="stmt" count="1"/>
       <line num="69" type="stmt" count="1"/>
-      <line num="77" type="method" name="getText" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="79" type="stmt" count="0"/>
+      <line num="77" type="method" name="getText" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="79" type="stmt" count="1"/>
       <line num="89" type="method" name="setText" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="91" type="stmt" count="1"/>
       <line num="93" type="stmt" count="1"/>
-      <line num="101" type="method" name="getMetadata" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="103" type="stmt" count="0"/>
+      <line num="101" type="method" name="getMetadata" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="103" type="stmt" count="1"/>
       <line num="113" type="method" name="setMetadata" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="115" type="stmt" count="1"/>
       <line num="117" type="stmt" count="1"/>
       <line num="119" type="stmt" count="1"/>
-      <metrics loc="118" ncloc="58" classes="1" methods="8" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="8" elements="20" coveredelements="12"/>
+      <metrics loc="118" ncloc="58" classes="1" methods="8" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="20" coveredelements="20"/>
     </file>
     <file name="/home/runner/work/ttbot/ttbot/src/Article/Domain/ArticleLoader.php">
       <line num="7" type="stmt" count="0"/>
@@ -215,6 +215,6 @@
       </class>
       <metrics loc="13" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <metrics files="22" loc="692" ncloc="388" classes="7" methods="29" coveredmethods="19" conditionals="0" coveredconditionals="0" statements="72" coveredstatements="58" elements="101" coveredelements="77"/>
+    <metrics files="22" loc="692" ncloc="388" classes="7" methods="29" coveredmethods="23" conditionals="0" coveredconditionals="0" statements="72" coveredstatements="62" elements="101" coveredelements="85"/>
   </project>
 </coverage>
