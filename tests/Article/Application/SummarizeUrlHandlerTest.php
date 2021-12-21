@@ -3,9 +3,10 @@ declare( strict_types=1 );
 
 namespace NachoBrito\TTBot\Article\Apoplication;
 
-use NachoBrito\TTBot\Article\Application\SummarizeArticleCommand;
-use NachoBrito\TTBot\Article\Application\SummarizeArticleHandler;
+use NachoBrito\TTBot\Article\Application\SummarizeUrlCommand;
+use NachoBrito\TTBot\Article\Application\SummarizeUrlHandler;
 use NachoBrito\TTBot\Article\Domain\Article;
+use NachoBrito\TTBot\Article\Domain\ArticleLoader;
 use NachoBrito\TTBot\Article\Domain\ArticleSummarizer;
 use NachoBrito\TTBot\Article\Domain\Event\ArticleSummaryCreatedEvent;
 use NachoBrito\TTBot\Common\Domain\Bus\Event\Event;
@@ -19,16 +20,13 @@ use PHPUnit\Framework\TestCase;
  *
  * @author nacho
  */
-class SummarizeArticleHandlerTest extends TestCase {
+class SummarizeUrlHandlerTest extends TestCase {
 
     public function testInvoke():void
     {
-        $article = (new Article())
-                ->setMetadata(["meta" => "data"])
-                ->setText("Text")
-                ->setTitle("Title")
-                ->setUrl("url");
-        $command = new SummarizeArticleCommand($article);
+        $url = "TheURL";
+        
+        $command = new SummarizeUrlCommand($url);
         
         $summarizer = $this
                 ->getMockBuilder(ArticleSummarizer::class)
@@ -36,7 +34,23 @@ class SummarizeArticleHandlerTest extends TestCase {
         $summarizer
                 ->expects($this->once())
                 ->method('summarize')
-                ->with($article);
+                ;
+        
+        $article = (new Article())
+                ->setMetadata(["meta" => "data"])
+                ->setText("Text")
+                ->setTitle("Title")
+                ->setUrl($url); 
+        
+        $loader = $this
+                ->getMockBuilder(ArticleLoader::class)
+                ->getMock();
+        $loader
+                ->expects($this->once())
+                ->method('loadArticle')
+                ->with($url)
+                ->willReturn($article)
+                ;
         
         
         $eventBus = new class() implements EventBus
@@ -65,7 +79,7 @@ class SummarizeArticleHandlerTest extends TestCase {
             }
         } ;
         
-        $handler = new SummarizeArticleHandler($summarizer, $eventBus);
+        $handler = new SummarizeUrlHandler($loader, $summarizer, $eventBus);
         
         $handler($command);
         

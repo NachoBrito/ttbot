@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * 
  *
- * @author administrador
+ * @author nacho
  */
 class ArticleSummaryCreatedEventTest extends TestCase {
 

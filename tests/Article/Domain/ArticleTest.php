@@ -31,7 +31,6 @@ class ArticleTest extends TestCase {
     }
 
     /**
-     * @covers NachoBrito\TTBot\Article\Domain\Article::getUrl
      * @todo   Implement testGetUrl().
      */
     public function testGetUrl() {
@@ -40,7 +39,6 @@ class ArticleTest extends TestCase {
     }
 
     /**
-     * @covers NachoBrito\TTBot\Article\Domain\Article::getTitle
      * @todo   Implement testGetTitle().
      */
     public function testGetTitle() {
@@ -49,7 +47,6 @@ class ArticleTest extends TestCase {
     }
 
     /**
-     * @covers NachoBrito\TTBot\Article\Domain\Article::getText
      * @todo   Implement testGetText().
      */
     public function testGetText() {
@@ -58,7 +55,6 @@ class ArticleTest extends TestCase {
     }
 
     /**
-     * @covers NachoBrito\TTBot\Article\Domain\Article::getMetadata
      * @todo   Implement testGetMetadata().
      */
     public function testGetMetadata() {
@@ -67,4 +63,12 @@ class ArticleTest extends TestCase {
         self::assertSame($o, $this->object->getMetadata());
     }
 
+    /**
+     * @todo   Implement testGetMetadata().
+     */
+    public function testGetLanguage() {
+        $o = "lang";
+        self::assertSame($this->object, $this->object->setLanguage($o));
+        self::assertSame($o, $this->object->getLanguage());
+    }    
 }
