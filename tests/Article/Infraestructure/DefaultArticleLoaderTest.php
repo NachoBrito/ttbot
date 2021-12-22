@@ -7,6 +7,7 @@ namespace NachoBrito\TTBot\Article\Infraestructure;
 use NachoBrito\TTBot\Common\Domain\HTMLTextExtractor;
 use NachoBrito\TTBot\Common\Domain\HTTPClient;
 use NachoBrito\TTBot\Common\Domain\LanguageDetector;
+use NachoBrito\TTBot\Common\Domain\Model\HTTPResponse;
 use NachoBrito\TTBot\Common\Domain\UserAgentsHelper;
 use PHPUnit\Framework\TestCase;
 
@@ -22,7 +23,9 @@ class DefaultArticleLoaderTest extends TestCase {
         $html = "The HTML";
         $text = "The text";
         $lang = "The Language";
+        $response_headers = ['header' => 'value'];
         
+        $http_response = new HTTPResponse($response_headers, $html);
         $headers = [
             'User-Agent' => UserAgentsHelper::getUserAgent()
         ];
@@ -36,7 +39,7 @@ class DefaultArticleLoaderTest extends TestCase {
                 ->expects($this->once())
                 ->method('get')
                 ->with($url, $headers)
-                ->willReturn($html);
+                ->willReturn($http_response);
         
         //htmlextractor
         $htmlextractor = $this

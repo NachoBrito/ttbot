@@ -1,8 +1,7 @@
 <?php
 
-namespace NachoBrito\TTBot\Article\Domain;
+namespace NachoBrito\TTBot\Article\Domain\Model;
 
-use NachoBrito\TTBot\Article\Domain\Model\Article;
 use PHPUnit\Framework\TestCase;
 
 /**
