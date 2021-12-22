@@ -37,11 +37,13 @@ class LogSummaryOnSummaryCreated implements EventSubscriber{
     public function __invoke(ArticleSummaryCreatedEvent $evt) {
         $msg = "New summary created: \n";
         $msg .= "Source: {$evt->getSummary()->getArticle()->getUrl()} \n";
-        $msg .= "Text: {$evt->getSummary()->getArticle()->getText()} \n";
+        //$msg .= "Text: {$evt->getSummary()->getArticle()->getText()} \n";
         $msg .= "Language: {$evt->getSummary()->getArticle()->getLanguage()}\n";
         $msg .= "Sentences:\n";
-        $msg .= json_encode($evt->getSummary()->getSentences(), JSON_PRETTY_PRINT);
-        
+        foreach($evt->getSummary()->getSentences() as $key => $sentence)
+        {
+            $msg .= "$key => $sentence\n";
+        }
         $this->loggger->info($msg);
     }
 

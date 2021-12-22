@@ -6,6 +6,7 @@ namespace NachoBrito\TTBot\Common\Infraestructure;
 
 use GuzzleHttp\Client;
 use NachoBrito\TTBot\Common\Domain\HTTPClient;
+use NachoBrito\TTBot\Common\Domain\Model\HTTPResponse;
 
 /**
  * 
@@ -19,13 +20,15 @@ class GuzzleHTTPClient implements HTTPClient {
      * @param string $url
      * @return string
      */
-    public function get(string $url, array $headers = []): string {
+    public function get(string $url, array $headers = []): HTTPResponse {
         $client = new Client([]);
         $options = [
             'headers' => $headers
         ];
-        $response = $client->get($url, $options)->getBody();
-        return $response->getContents();
+        $response = $client->get($url, $options);
+        $response_headers = $response->getHeaders();
+        $content = $response->getBody()->getContents();
+        return new HTTPResponse($response_headers, $content);
     }
 
 }

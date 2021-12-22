@@ -21,6 +21,7 @@ class HTML2TextExtractor implements HTMLTextExtractor{
      * @return string
      */
     public function extractText(string $html): string {
+        
         $o = new Html2Text($html, [
             'do_links' => 'none',
             'width' => 0

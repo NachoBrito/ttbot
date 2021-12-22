@@ -9,6 +9,7 @@ use NachoBrito\TTBot\Article\Domain\Model\Article;
 use NachoBrito\TTBot\Common\Domain\HTMLTextExtractor;
 use NachoBrito\TTBot\Common\Domain\HTTPClient;
 use NachoBrito\TTBot\Common\Domain\LanguageDetector;
+use NachoBrito\TTBot\Common\Domain\Model\HTTPResponse;
 use NachoBrito\TTBot\Common\Domain\UserAgentsHelper;
 
 /**
@@ -48,14 +49,23 @@ class DefaultArticleLoader implements ArticleLoader {
      * @return Article
      */
     public function loadArticle(string $uri): Article {
-        $content = $this->httpClient->get($uri, [
+        /** @var HTTPResponse $response */
+        $response = $this->httpClient->get($uri, [
             'User-Agent' => UserAgentsHelper::getUserAgent()
         ]);
 
-        $text = $this->htmlExtractor->extractText($content);
+        $text = $this->htmlExtractor->extractText($response->getContent());
 
-        $language = $this->languageDetector->detectLanguage($text);
-
+        $headers = $response->getHeaders();
+        if(isset($headers['Content-Language']))
+        {
+            $language = $headers['Content-Language'][0];
+        }
+        else
+        {
+            $language = $this->languageDetector->detectLanguage($text);
+        }
+        
         $metadata = [];
 
         $article = (new Article())

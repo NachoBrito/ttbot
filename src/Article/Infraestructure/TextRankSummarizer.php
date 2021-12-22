@@ -37,7 +37,8 @@ class TextRankSummarizer implements ArticleSummarizer {
         // Array of the most important keywords:
         //$result = $api->getOnlyKeyWords($text);
         // Array of the sentences from the most important part of the text:
-        $result = $api->getHighlights($article->getText());
+//        $result = $api->getHighlights($article->getText());
+        $result = $api->summarizeTextCompound($article->getText());
         // Array of the most important sentences from the text:
         //$result = $api->summarizeTextBasic($article->getText());
 
@@ -58,8 +59,6 @@ class TextRankSummarizer implements ArticleSummarizer {
                 return new French();
             case Language::GERMAN:
                 return new German();
-            case Language::INDONESIAN:
-                return new Indonesian();
             case Language::ITALIAN:
                 return new Italian();
             case Language::NORWEGIAN:
