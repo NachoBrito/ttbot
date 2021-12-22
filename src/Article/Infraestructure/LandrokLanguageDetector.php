@@ -2,11 +2,12 @@
 
 declare( strict_types=1 );
 
-namespace NachoBrito\TTBot\Common\Infraestructure;
+namespace NachoBrito\TTBot\Article\Infraestructure;
 
 use LanguageDetector\LanguageDetector as LRDetector;
+use NachoBrito\TTBot\Article\Domain\LanguageDetector;
 use NachoBrito\TTBot\Article\Domain\Model\Language;
-use NachoBrito\TTBot\Common\Domain\LanguageDetector;
+
 
 /**
  * 

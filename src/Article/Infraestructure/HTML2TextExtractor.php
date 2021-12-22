@@ -3,10 +3,11 @@
 declare( strict_types=1 );
 
 
-namespace NachoBrito\TTBot\Common\Infraestructure;
+namespace NachoBrito\TTBot\Article\Infraestructure;
 
 use Html2Text\Html2Text;
-use NachoBrito\TTBot\Common\Domain\HTMLTextExtractor;
+use NachoBrito\TTBot\Article\Domain\HTMLTextExtractor;
+
 
 /**
  * 
@@ -25,7 +26,8 @@ class HTML2TextExtractor implements HTMLTextExtractor{
         $o = new Html2Text($html, [
             'do_links' => 'none',
             'width' => 0
-        ]);        
+        ]);    
+        
         return $o->getText();
     }
 

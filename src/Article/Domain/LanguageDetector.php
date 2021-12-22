@@ -1,6 +1,6 @@
 <?php
 
-namespace NachoBrito\TTBot\Common\Domain;
+namespace NachoBrito\TTBot\Article\Domain;
 
 /**
  *

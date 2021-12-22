@@ -4,13 +4,12 @@ declare( strict_types=1 );
 
 namespace NachoBrito\TTBot\Article\Infraestructure;
 
-use NachoBrito\TTBot\Common\Domain\HTMLTextExtractor;
+use NachoBrito\TTBot\Article\Domain\HTMLTextExtractor;
+use NachoBrito\TTBot\Article\Domain\LanguageDetector;
 use NachoBrito\TTBot\Common\Domain\HTTPClient;
-use NachoBrito\TTBot\Common\Domain\LanguageDetector;
 use NachoBrito\TTBot\Common\Domain\Model\HTTPResponse;
 use NachoBrito\TTBot\Common\Domain\UserAgentsHelper;
 use NachoBrito\TTBot\Common\Infraestructure\BufferedLogger;
-use NachoBrito\TTBot\Common\Infraestructure\ConsoleLogger;
 use PHPUnit\Framework\TestCase;
 
 /**

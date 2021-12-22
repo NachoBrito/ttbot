@@ -5,13 +5,14 @@ declare( strict_types=1 );
 namespace NachoBrito\TTBot\Article\Infraestructure;
 
 use NachoBrito\TTBot\Article\Domain\ArticleLoader;
+use NachoBrito\TTBot\Article\Domain\HTMLTextExtractor;
+use NachoBrito\TTBot\Article\Domain\LanguageDetector;
 use NachoBrito\TTBot\Article\Domain\Model\Article;
-use NachoBrito\TTBot\Common\Domain\HTMLTextExtractor;
 use NachoBrito\TTBot\Common\Domain\HTTPClient;
-use NachoBrito\TTBot\Common\Domain\LanguageDetector;
 use NachoBrito\TTBot\Common\Domain\LoggerInterface;
 use NachoBrito\TTBot\Common\Domain\Model\HTTPResponse;
 use NachoBrito\TTBot\Common\Domain\UserAgentsHelper;
+
 
 /**
  * 
@@ -68,7 +69,7 @@ class DefaultArticleLoader implements ArticleLoader {
         $response = $this->httpClient->get($uri, [
             'User-Agent' => UserAgentsHelper::getUserAgent()
         ]);
-
+        
         $text = $this->htmlExtractor->extractText($response->getContent());
 
         $this->logger->debug("Text:\n$text");

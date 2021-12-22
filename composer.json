@@ -18,6 +18,7 @@
         "phpunit/phpunit": "^9.5"
     },
     "require": {
+        "fivefilters/readability.php": "^2.1",
         "guzzlehttp/guzzle": "^7.4",
         "html2text/html2text": "^4.3",
         "landrok/language-detector": "^1.3",

@@ -3,6 +3,9 @@
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use NachoBrito\TTBot\Article\Domain\ArticleSummarizer;
+use NachoBrito\TTBot\Article\Domain\HTMLTextExtractor;
+use NachoBrito\TTBot\Article\Infraestructure\ChainTextExtractor;
+use NachoBrito\TTBot\Article\Infraestructure\ReadabilityTextExtractor;
 use NachoBrito\TTBot\Article\Infraestructure\TextRankSummarizer;
 use NachoBrito\TTBot\Article\Infraestructure\YooperSummarizer;
 use NachoBrito\TTBot\Common\Domain\Bus\Command\CommandBus;
@@ -41,6 +44,8 @@ return function (ContainerConfigurator $configurator) {
     $services->set(LoggerInterface::class, ConsoleLogger::class);
     //$services->set(ArticleSummarizer::class, TextRankSummarizer::class);
     //$services->set(ArticleSummarizer::class, YooperSummarizer::class);
+    
+    $services->set(HTMLTextExtractor::class, ChainTextExtractor::class);
 
     // makes classes in src/ available to be used as services
     // this creates a service per class whose id is the fully-qualified class name
