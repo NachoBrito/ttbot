@@ -5,6 +5,7 @@ namespace NachoBrito\TTBot\Common\Infraestructure\Symfony;
 use NachoBrito\TTBot\Common\Domain\Bus\Query\Query;
 use NachoBrito\TTBot\Common\Domain\Bus\Query\QueryBus;
 use NachoBrito\TTBot\Common\Domain\Bus\Query\QueryResolver;
+use NachoBrito\TTBot\Common\Domain\Bus\Query\QueryHandler;
 use NachoBrito\TTBot\Common\Domain\Bus\Query\Result;
 use Symfony\Component\Messenger\Handler\HandlersLocator;
 use Symfony\Component\Messenger\MessageBus;
@@ -29,7 +30,7 @@ class SymfonyQueryBus implements QueryBus {
 
     /**
      * 
-     * @param iterable $handlers
+     * @param iterable<QueryHandler> $handlers
      * @param QueryResolver $resolver
      */
     public function __construct(iterable $handlers, QueryResolver $resolver) {

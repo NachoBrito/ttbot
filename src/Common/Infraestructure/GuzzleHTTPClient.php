@@ -25,7 +25,7 @@ class GuzzleHTTPClient implements HTTPClient {
             'headers' => $headers
         ];
         $response = $client->get($url, $options)->getBody();
-        return $response;
+        return $response->getContents();
     }
 
 }

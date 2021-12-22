@@ -4,8 +4,8 @@ declare( strict_types=1 );
 
 namespace NachoBrito\TTBot\Article\Infraestructure;
 
-use NachoBrito\TTBot\Article\Domain\Article;
 use NachoBrito\TTBot\Article\Domain\ArticleLoader;
+use NachoBrito\TTBot\Article\Domain\Model\Article;
 use NachoBrito\TTBot\Common\Domain\HTMLTextExtractor;
 use NachoBrito\TTBot\Common\Domain\HTTPClient;
 use NachoBrito\TTBot\Common\Domain\LanguageDetector;

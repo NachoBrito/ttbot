@@ -13,6 +13,6 @@ use DomainException;
  *
  * @author nacho
  */
-class UnknownLanguageException extends DomainException{
+class LanguageNotSupportedException extends DomainException{
     
 }

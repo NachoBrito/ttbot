@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace NachoBrito\TTBot\Common\Infraestructure;
 
 use NachoBrito\TTBot\Common\Domain\LanguageDetector;
+use LanguageDetector\LanguageDetector as LRDetector;
 
 /**
  * 
@@ -19,11 +20,11 @@ class LandrokLanguageDetector implements LanguageDetector {
      * @return string
      */
     public function detectLanguage(string $text): string {
-        $detector = new LanguageDetector\LanguageDetector();
+        $detector = new LRDetector();
 
         $language = $detector->evaluate($text)->getLanguage();
         
-        return $language;
+        return $language->getCode();
     }
 
 }

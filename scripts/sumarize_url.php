@@ -15,7 +15,6 @@ $cmd = new SummarizeUrlCommand($url);
 /** @var CommandBus $bus */
 /** @var ContainerBuilder $container */
 $container = getContainer();
-print_r($container->getAliases());
 $bus = $container->get(CommandBus::class);
 
 $bus->dispatch($cmd);

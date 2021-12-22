@@ -16,5 +16,6 @@ function getContainer(): ContainerBuilder {
     $containerBuilder = new ContainerBuilder();
     $loader = new PhpFileLoader($containerBuilder, new FileLocator(__DIR__));
     $loader->load('services.php');
+    $containerBuilder->compile();
     return $containerBuilder;
 }

@@ -2,6 +2,7 @@
 
 namespace NachoBrito\TTBot\Article\Domain;
 
+use NachoBrito\TTBot\Article\Domain\Model\Article;
 use PHPUnit\Framework\TestCase;
 
 /**

@@ -1,5 +1,5 @@
 <?php declare( strict_types=1 ); 
-namespace NachoBrito\TTBot\Article\Domain;
+namespace NachoBrito\TTBot\Article\Domain\Model;
 
 class Article
 {
