@@ -9,6 +9,8 @@ use NachoBrito\TTBot\Common\Domain\HTTPClient;
 use NachoBrito\TTBot\Common\Domain\LanguageDetector;
 use NachoBrito\TTBot\Common\Domain\Model\HTTPResponse;
 use NachoBrito\TTBot\Common\Domain\UserAgentsHelper;
+use NachoBrito\TTBot\Common\Infraestructure\BufferedLogger;
+use NachoBrito\TTBot\Common\Infraestructure\ConsoleLogger;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -63,7 +65,8 @@ class DefaultArticleLoaderTest extends TestCase {
                 ->with($text)
                 ->willReturn($lang);
         
-        $loader = new DefaultArticleLoader($httpclient, $languagedetector, $htmlextractor);
+        $logger = new BufferedLogger();
+        $loader = new DefaultArticleLoader($httpclient, $languagedetector, $htmlextractor, $logger);
         
         $article = $loader->loadArticle($url);
         
@@ -72,6 +75,7 @@ class DefaultArticleLoaderTest extends TestCase {
         self::assertSame($metadata, $article->getMetadata());
         //self::assertSame($text, $article->getTitle());
         self::assertSame($url, $article->getUrl());
+        self::assertGreaterThan(0, count($logger->flushLog()));
     }
 
 }

@@ -8,6 +8,8 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 
+define('VENDOR_DIR', __DIR__ . "/../../vendor");
+
 /**
  * 
  * @return ContainerBuilder

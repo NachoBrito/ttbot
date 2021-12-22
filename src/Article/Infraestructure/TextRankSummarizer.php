@@ -28,7 +28,6 @@ use PhpScience\TextRank\Tool\StopWords\StopWordsAbstract;
 class TextRankSummarizer implements ArticleSummarizer {
 
     public function summarize(Article $article): ArticleSummary {
-
         $api = new TextRankFacade();
         
         $stopWords = $this->getStopWords($article);
@@ -37,8 +36,8 @@ class TextRankSummarizer implements ArticleSummarizer {
         // Array of the most important keywords:
         //$result = $api->getOnlyKeyWords($text);
         // Array of the sentences from the most important part of the text:
-//        $result = $api->getHighlights($article->getText());
-        $result = $api->summarizeTextCompound($article->getText());
+        $result = $api->getHighlights($article->getText());
+//        $result = $api->summarizeTextCompound($article->getText());
         // Array of the most important sentences from the text:
         //$result = $api->summarizeTextBasic($article->getText());
 

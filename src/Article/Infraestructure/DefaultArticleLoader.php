@@ -9,6 +9,7 @@ use NachoBrito\TTBot\Article\Domain\Model\Article;
 use NachoBrito\TTBot\Common\Domain\HTMLTextExtractor;
 use NachoBrito\TTBot\Common\Domain\HTTPClient;
 use NachoBrito\TTBot\Common\Domain\LanguageDetector;
+use NachoBrito\TTBot\Common\Domain\LoggerInterface;
 use NachoBrito\TTBot\Common\Domain\Model\HTTPResponse;
 use NachoBrito\TTBot\Common\Domain\UserAgentsHelper;
 
@@ -37,10 +38,24 @@ class DefaultArticleLoader implements ArticleLoader {
      */
     private $htmlExtractor;
 
-    public function __construct(HTTPClient $httpClient, LanguageDetector $languageDetector, HTMLTextExtractor $htmlExtractor) {
+    /**
+     * 
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * 
+     * @param HTTPClient $httpClient
+     * @param LanguageDetector $languageDetector
+     * @param HTMLTextExtractor $htmlExtractor
+     * @param LoggerInterface $logger
+     */
+    public function __construct(HTTPClient $httpClient, LanguageDetector $languageDetector, HTMLTextExtractor $htmlExtractor, LoggerInterface $logger) {
         $this->httpClient = $httpClient;
         $this->languageDetector = $languageDetector;
         $this->htmlExtractor = $htmlExtractor;
+        $this->logger = $logger;
     }
 
     /**
@@ -56,16 +71,17 @@ class DefaultArticleLoader implements ArticleLoader {
 
         $text = $this->htmlExtractor->extractText($response->getContent());
 
+        $this->logger->debug("Text:\n$text");
+        
         $headers = $response->getHeaders();
-        if(isset($headers['Content-Language']))
-        {
+        if (isset($headers['Content-Language'])) {
+            $this->logger->info("Content-Language header detected: " . json_encode($headers['Content-Language']));
             $language = $headers['Content-Language'][0];
-        }
-        else
-        {
+        } else {
+            $this->logger->info("Content-Language header not found, using language detector.");
             $language = $this->languageDetector->detectLanguage($text);
         }
-        
+
         $metadata = [];
 
         $article = (new Article())

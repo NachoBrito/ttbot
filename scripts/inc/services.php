@@ -2,6 +2,9 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use NachoBrito\TTBot\Article\Domain\ArticleSummarizer;
+use NachoBrito\TTBot\Article\Infraestructure\TextRankSummarizer;
+use NachoBrito\TTBot\Article\Infraestructure\YooperSummarizer;
 use NachoBrito\TTBot\Common\Domain\Bus\Command\CommandBus;
 use NachoBrito\TTBot\Common\Domain\Bus\Command\CommandHandler;
 use NachoBrito\TTBot\Common\Domain\Bus\Command\CommandResolver;
@@ -10,10 +13,12 @@ use NachoBrito\TTBot\Common\Domain\Bus\Event\EventResolver;
 use NachoBrito\TTBot\Common\Domain\Bus\Event\EventSubscriber;
 use NachoBrito\TTBot\Common\Domain\Bus\Query\QueryBus;
 use NachoBrito\TTBot\Common\Domain\Bus\Query\QueryHandler;
+use NachoBrito\TTBot\Common\Domain\LoggerInterface;
+use NachoBrito\TTBot\Common\Infraestructure\ConsoleLogger;
 use NachoBrito\TTBot\Common\Infraestructure\Symfony\SymfonyCommandBus;
 use NachoBrito\TTBot\Common\Infraestructure\Symfony\SymfonyEventBus;
 use NachoBrito\TTBot\Common\Infraestructure\Symfony\SymfonyQueryBus;
-use Symfony\Component\DependencyInjection\Reference;
+
 
 return function (ContainerConfigurator $configurator) {
     // default configuration for services in *this* file
@@ -32,6 +37,10 @@ return function (ContainerConfigurator $configurator) {
     $services
             ->instanceof(QueryHandler::class)            
             ->tag('nachobrito.ttbot.queryhandler');
+    
+    $services->set(LoggerInterface::class, ConsoleLogger::class);
+    //$services->set(ArticleSummarizer::class, TextRankSummarizer::class);
+    //$services->set(ArticleSummarizer::class, YooperSummarizer::class);
 
     // makes classes in src/ available to be used as services
     // this creates a service per class whose id is the fully-qualified class name
@@ -47,7 +56,7 @@ return function (ContainerConfigurator $configurator) {
                 __DIR__ . '/../../src/Common/Infraestructure/Symfony/SymfonyEventBus.php',
                 __DIR__ . '/../../src/Common/Infraestructure/Symfony/SymfonyQueryBus.php',
     ]);
-    
+                
     /*
      * EVENT BUS CONFIGURATION
      */    
