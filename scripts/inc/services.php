@@ -16,6 +16,7 @@ use NachoBrito\TTBot\Common\Domain\Bus\Event\EventResolver;
 use NachoBrito\TTBot\Common\Domain\Bus\Event\EventSubscriber;
 use NachoBrito\TTBot\Common\Domain\Bus\Query\QueryBus;
 use NachoBrito\TTBot\Common\Domain\Bus\Query\QueryHandler;
+use NachoBrito\TTBot\Common\Domain\Bus\Query\QueryResolver;
 use NachoBrito\TTBot\Common\Domain\ConfigLoader;
 use NachoBrito\TTBot\Common\Domain\LoggerInterface;
 use NachoBrito\TTBot\Common\Infraestructure\ConsoleLogger;
@@ -65,6 +66,7 @@ return function (ContainerConfigurator $configurator) {
                 __DIR__ . '/../../src/**/*Exception.php',
                 __DIR__ . '/../../src/**/*Command.php',
                 __DIR__ . '/../../src/**/*Query.php',
+                __DIR__ . '/../../src/**/*Result.php',
                 __DIR__ . '/../../src/Common/Infraestructure/Symfony/SymfonyCommandBus.php',
                 __DIR__ . '/../../src/Common/Infraestructure/Symfony/SymfonyEventBus.php',
                 __DIR__ . '/../../src/Common/Infraestructure/Symfony/SymfonyQueryBus.php',
@@ -94,7 +96,7 @@ return function (ContainerConfigurator $configurator) {
     $services->set(QueryBus::class, SymfonyQueryBus::class)
             ->args([
                 tagged_iterator('nachobrito.ttbot.queryhandler'),
-                service(CommandResolver::class)
+                service(QueryResolver::class)
             ]);
     
     
