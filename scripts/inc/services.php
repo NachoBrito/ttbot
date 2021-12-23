@@ -49,9 +49,10 @@ return function (ContainerConfigurator $configurator) {
     
     $services->set(HTMLTextExtractor::class, ChainTextExtractor::class);
     
+    $basedir = dirname(__DIR__, 1);
     $services->set(ConfigLoader::class, INIConfigLoader::class)
             ->args([
-                dirname(__DIR__, 1)
+                $basedir
             ]);
     
     // makes classes in src/ available to be used as services
@@ -67,6 +68,7 @@ return function (ContainerConfigurator $configurator) {
                 __DIR__ . '/../../src/Common/Infraestructure/Symfony/SymfonyCommandBus.php',
                 __DIR__ . '/../../src/Common/Infraestructure/Symfony/SymfonyEventBus.php',
                 __DIR__ . '/../../src/Common/Infraestructure/Symfony/SymfonyQueryBus.php',
+                __DIR__ . '/../../src/Common/Infraestructure/INIConfigLoader.php',
     ]);
                 
     /*
