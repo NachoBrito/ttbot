@@ -10,7 +10,6 @@ use NachoBrito\TTBot\Common\Domain\Storage;
 use NachoBrito\TTBot\Twitter\Domain\Model\Tweet;
 use NachoBrito\TTBot\Twitter\Domain\TwitterClient;
 
-
 /**
  * 
  *
@@ -18,25 +17,26 @@ use NachoBrito\TTBot\Twitter\Domain\TwitterClient;
  */
 class TwitterService {
 
-    
+    const LAST_MENTION_ID = 'LAST_MENTION_ID';
+
     /**
      * 
      * @var TwitterClient
      */
     private $client;
-    
+
     /**
      * 
      * @var Storage
      */
     private $storage;
-    
+
     /**
      * 
      * @var LoggerInterface
      */
     private $logger;
-    
+
     /**
      * 
      * @param TwitterClient $client
@@ -53,14 +53,17 @@ class TwitterService {
      * 
      */
     public function getNewMentions() {
+        $last_id = $this->storage->get(self::LAST_MENTION_ID);
+        $this->logger->debug("Last loaded mention was $last_id");
+
         $this->logger->debug("Loading mentions...");
         $mentions = $this->client->getMentions();
 
         $data = $mentions->data;
         $meta = $mentions->meta;
 
-        //todo: save this
         $newest_id = $meta->newest_id;
+        $this->logger->debug("Newest mention id: $newest_id");
 
         $result = [];
         foreach ($data as $mention) {

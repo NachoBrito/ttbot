@@ -6,3 +6,4 @@ composer.phar
 # composer.lock
 /nbproject/private/
 /scripts/.env.local
+/storage.dat

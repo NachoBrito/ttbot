@@ -29,7 +29,7 @@ class FlintstoneStorage implements Storage {
         if (!$this->db) {
             $path = getenv('STORAGE_DIR');
 
-            $this->db = new Flintstone(self::class, [
+            $this->db = new Flintstone('storage', [
                 'dir' => $path,
                 'cache' => TRUE,
             ]);
@@ -38,8 +38,10 @@ class FlintstoneStorage implements Storage {
     }
 
     //put your code here
-    public function get(string $key): Serializable {
+    public function get(string $key, Serializable $default = NULL): ?Serializable {
         $o = $this->getDB()->get($key);
+        
+        return $o ?? $default;
     }
 
     /**
