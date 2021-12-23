@@ -1,0 +1,24 @@
+{
+    "data": {
+        "id": "1473926946706894850",
+        "public_metrics": {
+            "retweet_count": 0,
+            "reply_count": 0,
+            "like_count": 0,
+            "quote_count": 0
+        },
+        "created_at": "2021-12-23T08:02:22.000Z",
+        "text": "I mention you, @ElOrigenDePI",
+        "author_id": "715508356128116736",
+        "lang": "en"
+    },
+    "includes": {
+        "users": [
+            {
+                "id": "715508356128116736",
+                "name": "TheCleverClick",
+                "username": "TheCleverClick"
+            }
+        ]
+    }
+}

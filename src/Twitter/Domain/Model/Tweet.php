@@ -3,7 +3,7 @@
 declare( strict_types=1 );
 
 
-namespace NachoBrito\TTBot\Twitter\Domain;
+namespace NachoBrito\TTBot\Twitter\Domain\Model;
 
 use DateTime;
 

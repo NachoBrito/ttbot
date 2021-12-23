@@ -5,10 +5,7 @@ declare( strict_types=1 );
 namespace NachoBrito\TTBot\Twitter\Infraestructure;
 
 use Coderjerk\BirdElephant\BirdElephant;
-use DateTime;
-use DateTimeZone;
 use NachoBrito\TTBot\Common\Domain\LoggerInterface;
-use NachoBrito\TTBot\Twitter\Domain\Tweet;
 use NachoBrito\TTBot\Twitter\Domain\TwitterClient;
 
 /**
@@ -23,7 +20,7 @@ class BirdElephantTwitterClient implements TwitterClient {
      * @var BirdElephant
      */
     private $client;
-    
+
     /**
      * 
      * @var LoggerInterface
@@ -45,7 +42,7 @@ class BirdElephantTwitterClient implements TwitterClient {
     private function getClient() {
         if (!$this->client) {
             $credentials = array(
-                'bearer_token' => getenv('TWITTER_BEARER_TOKEN'), 
+                'bearer_token' => getenv('TWITTER_BEARER_TOKEN'),
                 'consumer_key' => getenv('TWITTER_API_KEY'),
                 'consumer_secret' => getenv('TWITTER_API_SECRET'),
             );
@@ -55,51 +52,31 @@ class BirdElephantTwitterClient implements TwitterClient {
         return $this->client;
     }
 
+
+
     /**
      * 
+     * @return mixed
      */
-    public function getNewMentions() {
+    public function getMentions() {
         $client = $this->getClient();
-        
         $user = $client->user(getenv('TWITTER_USERNAME'));
-        
         $mentions = $user->mentions();
         
-        $data = $mentions->data;
-        $meta = $mentions->meta;
-        
-        //todo: save this
-        $newest_id = $meta->newest_id;
-        
-        $result = [];
-        foreach($data as $mention)
-        {
-            $info = $client->tweets()->get($mention->id, [
-                'expansions' => 'author_id',
-                'tweet.fields' => 'author_id,created_at,lang,public_metrics',
-                'user.fields' => 'name'
-            ]);
-            
-            
-            $user = $info->includes->users[0];
-            $created_at = DateTime::createFromFormat(DateTime::RFC3339_EXTENDED,$info->data->created_at);            
-            $tweet = 
-                    (new Tweet())
-                    ->setAuthorName($user->name)
-                    ->setAuthorUsername($user->username)
-                    ->setAuthorId($user->id)
-                    ->setCreatedAt($created_at)
-                    ->setId($info->data->id)
-                    ->setLang($info->data->lang)
-                    ->setText($info->data->text)                    
-                    ;
-            $result[] = $tweet;
-        }
-//        $json = json_encode($data);
-//        $array = json_decode($json, TRUE);
-//        return $array;
-        
-        return $result;
+        return $mentions;
+    }
+
+
+    /**
+     * 
+     * @param string $id
+     * @param array $options
+     * @return mixed
+     */
+    public function getTweet(string $id, array $options) {
+        $client = $this->getClient();        
+        $tweet = $client->tweets()->get($id, $options);        
+        return $tweet;
     }
 
 }

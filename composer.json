@@ -19,6 +19,7 @@
     },
     "require": {
         "coderjerk/bird-elephant": "^0.4.2",
+        "fire015/flintstone": "^2.3",
         "fivefilters/readability.php": "^2.1",
         "guzzlehttp/guzzle": "^7.4",
         "html2text/html2text": "^4.3",
