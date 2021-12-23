@@ -16,8 +16,10 @@ use NachoBrito\TTBot\Common\Domain\Bus\Event\EventResolver;
 use NachoBrito\TTBot\Common\Domain\Bus\Event\EventSubscriber;
 use NachoBrito\TTBot\Common\Domain\Bus\Query\QueryBus;
 use NachoBrito\TTBot\Common\Domain\Bus\Query\QueryHandler;
+use NachoBrito\TTBot\Common\Domain\ConfigLoader;
 use NachoBrito\TTBot\Common\Domain\LoggerInterface;
 use NachoBrito\TTBot\Common\Infraestructure\ConsoleLogger;
+use NachoBrito\TTBot\Common\Infraestructure\INIConfigLoader;
 use NachoBrito\TTBot\Common\Infraestructure\Symfony\SymfonyCommandBus;
 use NachoBrito\TTBot\Common\Infraestructure\Symfony\SymfonyEventBus;
 use NachoBrito\TTBot\Common\Infraestructure\Symfony\SymfonyQueryBus;
@@ -46,7 +48,12 @@ return function (ContainerConfigurator $configurator) {
     //$services->set(ArticleSummarizer::class, YooperSummarizer::class);
     
     $services->set(HTMLTextExtractor::class, ChainTextExtractor::class);
-
+    
+    $services->set(ConfigLoader::class, INIConfigLoader::class)
+            ->args([
+                dirname(__DIR__, 1)
+            ]);
+    
     // makes classes in src/ available to be used as services
     // this creates a service per class whose id is the fully-qualified class name
     $services->load('NachoBrito\\TTBot\\', __DIR__ . '/../../src/*')
