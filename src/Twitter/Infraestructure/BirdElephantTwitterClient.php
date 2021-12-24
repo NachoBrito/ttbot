@@ -62,7 +62,7 @@ class BirdElephantTwitterClient implements TwitterClient {
         $client = $this->getClient();
         $user = $client->user(getenv('TWITTER_USERNAME'));
         $mentions = $user->mentions();
-        
+
         return $mentions;
     }
 
@@ -75,7 +75,10 @@ class BirdElephantTwitterClient implements TwitterClient {
      */
     public function getTweet(string $id, array $options) {
         $client = $this->getClient();        
-        $tweet = $client->tweets()->get($id, $options);        
+        $tweet = $client->tweets()->get($id, $options);          
+        
+        $this->logger->debug("+++TWEET+++:\n" . json_encode($tweet, JSON_PRETTY_PRINT) . " \n\n");
+        
         return $tweet;
     }
 

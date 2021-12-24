@@ -8,6 +8,7 @@ use DateTime;
 use NachoBrito\TTBot\Common\Domain\LoggerInterface;
 use NachoBrito\TTBot\Common\Domain\Storage;
 use NachoBrito\TTBot\Twitter\Domain\Model\Tweet;
+use NachoBrito\TTBot\Twitter\Domain\TweetFactory;
 use NachoBrito\TTBot\Twitter\Domain\TwitterClient;
 
 /**
@@ -61,35 +62,27 @@ class TwitterService {
 
         $data = $mentions->data;
         $meta = $mentions->meta;
-
-        $newest_id = $meta->newest_id;
-        $this->logger->debug("Newest mention id: $newest_id");
-
+        
         $result = [];
         foreach ($data as $mention) {
+            if($mention->id <= $last_id)
+            {
+                $this->logger->debug("Ignoring old tweet {$mention->id}");
+                continue;
+            }
+            
             $info = $this->client->getTweet($mention->id, [
-                'expansions' => 'author_id',
-                'tweet.fields' => 'author_id,created_at,lang,public_metrics',
+                'expansions' => 'author_id,referenced_tweets.id,referenced_tweets.id.author_id',
+                'tweet.fields' => 'author_id,created_at,lang,public_metrics,referenced_tweets',
                 'user.fields' => 'name'
             ]);
-
-
-            $user = $info->includes->users[0];
-            $created_at = DateTime::createFromFormat(DateTime::RFC3339_EXTENDED, $info->data->created_at);
-            $tweet = (new Tweet())
-                    ->setAuthorName($user->name)
-                    ->setAuthorUsername($user->username)
-                    ->setAuthorId($user->id)
-                    ->setCreatedAt($created_at)
-                    ->setId($info->data->id)
-                    ->setLang($info->data->lang)
-                    ->setText($info->data->text)
-            ;
-            $result[] = $tweet;
+            
+            $result[] = TweetFactory::fromAPIResponse($info);
         }
-//        $json = json_encode($data);
-//        $array = json_decode($json, TRUE);
-//        return $array;
+        
+        $newest_id = $meta->newest_id;
+        $this->logger->debug("Newest mention id: $newest_id");
+        $this->storage->set(self::LAST_MENTION_ID, $newest_id);
 
         return $result;
     }

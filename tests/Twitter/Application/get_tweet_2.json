@@ -7,10 +7,10 @@
             "like_count": 0,
             "quote_count": 0
         },
-        "created_at": "2021-12-23T08:02:22.000Z",
         "text": "I mention you, @ElOrigenDePI",
-        "author_id": "715508356128116736",
-        "lang": "en"
+        "created_at": "2021-12-23T08:02:22.000Z",
+        "lang": "en",
+        "author_id": "715508356128116736"
     },
     "includes": {
         "users": [
@@ -21,4 +21,4 @@
             }
         ]
     }
-}
+} 

@@ -38,10 +38,10 @@ class FlintstoneStorage implements Storage {
     }
 
     //put your code here
-    public function get(string $key, Serializable $default = NULL): ?Serializable {
+    public function get(string $key, string $default = NULL): ?string {
         $o = $this->getDB()->get($key);
-        
-        return $o ?? $default;
+
+        return $o ? "$o" : $default;
     }
 
     /**
@@ -50,9 +50,8 @@ class FlintstoneStorage implements Storage {
      * @param Serializable $value
      * @return void
      */
-    public function set(string $key, Serializable $value): void {
-        $this->getDB()->set($key, $value);
-        $this->getDB()->flush();
+    public function set(string $key, string $value): void {
+        $this->getDB()->set($key, $value);        
     }
 
 }

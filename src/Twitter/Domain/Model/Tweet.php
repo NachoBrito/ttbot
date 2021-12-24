@@ -55,6 +55,12 @@ class Tweet {
      */    
     private $created_at;
     
+    /**
+     * 
+     * @var array<TweetReference>
+     */
+    private $references = [];
+    
     public function getId(): string {
         return $this->id;
     }
@@ -120,6 +126,21 @@ class Tweet {
         return $this;
     }
 
+    /**
+     * 
+     * @return array<TweetReference>
+     */
+    public function getReferences():array {
+        return $this->references;
+    }
+
+
+    public function addReference(TweetReference $ref)
+    {
+        $this->references[] = $ref;
+        return $this;
+    }
+            
 
 
 }

@@ -10,7 +10,7 @@ use Serializable;
  */
 interface Storage {
 
-    public function set(string $key, Serializable $value): void;
+    public function set(string $key, string $value): void;
 
-    public function get(string $key, Serializable $default = NULL): ?Serializable;
+    public function get(string $key, string $default = NULL): ?string;
 }
