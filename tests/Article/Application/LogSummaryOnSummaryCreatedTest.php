@@ -8,7 +8,7 @@ use NachoBrito\TTBot\Article\Application\LogSummaryOnSummaryCreated;
 use NachoBrito\TTBot\Article\Domain\Event\ArticleSummaryCreatedEvent;
 use NachoBrito\TTBot\Article\Domain\Model\Article;
 use NachoBrito\TTBot\Article\Domain\Model\ArticleSummary;
-use NachoBrito\TTBot\Common\Domain\LoggerInterface;
+use NachoBrito\TTBot\Common\Domain\Logger;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -23,7 +23,7 @@ class LogSummaryOnSummaryCreatedTest extends TestCase {
      */
     public function testInvoke() {
         $logger = $this
-                ->getMockBuilder(LoggerInterface::class)
+                ->getMockBuilder(Logger::class)
                 ->getMock();
         $logger
                 ->expects($this->once())

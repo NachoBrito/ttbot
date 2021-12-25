@@ -7,7 +7,7 @@ namespace NachoBrito\TTBot\Article\Application;
 
 use NachoBrito\TTBot\Article\Domain\Event\ArticleSummaryCreatedEvent;
 use NachoBrito\TTBot\Common\Domain\Bus\Event\EventSubscriber;
-use NachoBrito\TTBot\Common\Domain\LoggerInterface;
+use NachoBrito\TTBot\Common\Domain\Logger;
 
 /**
  * 
@@ -18,15 +18,15 @@ class LogSummaryOnSummaryCreated implements EventSubscriber{
     
     /**
      * 
-     * @var LoggerInterface
+     * @var Logger
      */
     private $loggger;
     
     /**
      * 
-     * @param LoggerInterface $loggger
+     * @param Logger $loggger
      */
-    public function __construct(LoggerInterface $loggger) {
+    public function __construct(Logger $loggger) {
         $this->loggger = $loggger;
     }
 

@@ -6,7 +6,7 @@ namespace NachoBrito\TTBot\Common\Infraestructure;
 
 use GuzzleHttp\Client;
 use NachoBrito\TTBot\Common\Domain\HTTPClient;
-use NachoBrito\TTBot\Common\Domain\LoggerInterface;
+use NachoBrito\TTBot\Common\Domain\Logger;
 use NachoBrito\TTBot\Common\Domain\Model\HTTPResponse;
 
 /**
@@ -18,15 +18,15 @@ class GuzzleHTTPClient implements HTTPClient {
 
     /**
      * 
-     * @var LoggerInterface
+     * @var Logger
      */
     private $logger;
     
     /**
      * 
-     * @param LoggerInterface $logger
+     * @param Logger $logger
      */
-    public function __construct(LoggerInterface $logger) {
+    public function __construct(Logger $logger) {
         $this->logger = $logger;
     }
 

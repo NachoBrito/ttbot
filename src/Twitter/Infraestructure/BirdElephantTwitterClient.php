@@ -5,7 +5,7 @@ declare( strict_types=1 );
 namespace NachoBrito\TTBot\Twitter\Infraestructure;
 
 use Coderjerk\BirdElephant\BirdElephant;
-use NachoBrito\TTBot\Common\Domain\LoggerInterface;
+use NachoBrito\TTBot\Common\Domain\Logger;
 use NachoBrito\TTBot\Twitter\Domain\TwitterClient;
 
 /**
@@ -23,15 +23,15 @@ class BirdElephantTwitterClient implements TwitterClient {
 
     /**
      * 
-     * @var LoggerInterface
+     * @var Logger
      */
     private $logger;
 
     /**
      * 
-     * @param LoggerInterface $logger
+     * @param Logger $logger
      */
-    public function __construct(LoggerInterface $logger) {
+    public function __construct(Logger $logger) {
         $this->logger = $logger;
     }
 

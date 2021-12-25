@@ -4,14 +4,14 @@ declare( strict_types=1 );
 
 namespace NachoBrito\TTBot\Common\Infraestructure;
 
-use NachoBrito\TTBot\Common\Domain\LoggerInterface;
+use NachoBrito\TTBot\Common\Domain\Logger;
 
 /**
  * 
  *
  * @author nacho
  */
-class BufferedLogger implements LoggerInterface {
+class BufferedLogger implements Logger {
 
     /**
      * 

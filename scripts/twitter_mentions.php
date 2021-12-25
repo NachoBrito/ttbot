@@ -11,9 +11,11 @@ $query = new MentionsQuery;
 
 /** @var QueryBus $bus */
 /** @var ContainerBuilder $container */
+echo "Get container\n";
 $container = getContainer();
+echo "Get query bus\n";
 $bus = $container->get(QueryBus::class);
-
+echo "Execute query\n";
 $result = $bus->ask($query);
-
+echo "print results\n";
 print_r($result->getItems());

@@ -9,7 +9,7 @@ use NachoBrito\TTBot\Article\Domain\HTMLTextExtractor;
 use NachoBrito\TTBot\Article\Domain\LanguageDetector;
 use NachoBrito\TTBot\Article\Domain\Model\Article;
 use NachoBrito\TTBot\Common\Domain\HTTPClient;
-use NachoBrito\TTBot\Common\Domain\LoggerInterface;
+use NachoBrito\TTBot\Common\Domain\Logger;
 use NachoBrito\TTBot\Common\Domain\Model\HTTPResponse;
 use NachoBrito\TTBot\Common\Domain\UserAgentsHelper;
 
@@ -41,7 +41,7 @@ class DefaultArticleLoader implements ArticleLoader {
 
     /**
      * 
-     * @var LoggerInterface
+     * @var Logger
      */
     private $logger;
 
@@ -50,9 +50,9 @@ class DefaultArticleLoader implements ArticleLoader {
      * @param HTTPClient $httpClient
      * @param LanguageDetector $languageDetector
      * @param HTMLTextExtractor $htmlExtractor
-     * @param LoggerInterface $logger
+     * @param Logger $logger
      */
-    public function __construct(HTTPClient $httpClient, LanguageDetector $languageDetector, HTMLTextExtractor $htmlExtractor, LoggerInterface $logger) {
+    public function __construct(HTTPClient $httpClient, LanguageDetector $languageDetector, HTMLTextExtractor $htmlExtractor, Logger $logger) {
         $this->httpClient = $httpClient;
         $this->languageDetector = $languageDetector;
         $this->htmlExtractor = $htmlExtractor;

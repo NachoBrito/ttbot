@@ -4,14 +4,14 @@ declare( strict_types=1 );
 
 namespace NachoBrito\TTBot\Common\Infraestructure;
 
-use NachoBrito\TTBot\Common\Domain\LoggerInterface;
+use NachoBrito\TTBot\Common\Domain\Logger;
 
 /**
  * 
  *
  * @author nacho
  */
-class ConsoleLogger implements LoggerInterface {
+class ConsoleLogger implements Logger {
 
     private function getTag($caller) {
         

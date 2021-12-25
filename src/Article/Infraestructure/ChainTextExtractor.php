@@ -5,7 +5,7 @@ declare( strict_types=1 );
 namespace NachoBrito\TTBot\Article\Infraestructure;
 
 use NachoBrito\TTBot\Article\Domain\HTMLTextExtractor;
-use NachoBrito\TTBot\Common\Domain\LoggerInterface;
+use NachoBrito\TTBot\Common\Domain\Logger;
 
 /**
  * 
@@ -28,12 +28,12 @@ class ChainTextExtractor implements HTMLTextExtractor{
     
     /**
      * 
-     * @var LoggerInterface
+     * @var Logger
      */
     private $logger;
     
 
-    public function __construct(ReadabilityTextExtractor $readability, HTML2TextExtractor $html2text, LoggerInterface $logger) {
+    public function __construct(ReadabilityTextExtractor $readability, HTML2TextExtractor $html2text, Logger $logger) {
         $this->readability = $readability;
         $this->html2text = $html2text;
         $this->logger = $logger;

@@ -23,8 +23,6 @@ class SymfonyCommandBus implements CommandBus {
      */
     private $bus;
 
-
-    
     /**
      * 
      * @param iterable<CommandHandler> $handlers

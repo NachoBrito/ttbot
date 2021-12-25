@@ -5,14 +5,17 @@ declare( strict_types=1 );
 namespace NachoBrito\TTBot\Twitter\Application;
 
 use DateTime;
+use NachoBrito\TTBot\Common\Domain\Bus\Event\EventBus;
 use NachoBrito\TTBot\Common\Domain\Storage;
 use NachoBrito\TTBot\Common\Infraestructure\BufferedLogger;
 use NachoBrito\TTBot\Common\Infraestructure\InMemoryStorage;
+use NachoBrito\TTBot\Twitter\Domain\Event\TwitterMentionReceived;
 use NachoBrito\TTBot\Twitter\Domain\Model\Tweet;
 use NachoBrito\TTBot\Twitter\Domain\Model\TweetReference;
 use NachoBrito\TTBot\Twitter\Domain\TwitterClient;
 use PHPUnit\Framework\TestCase;
 use Serializable;
+use function GuzzleHttp\json_decode;
 
 /**
  * 
@@ -59,7 +62,15 @@ class TwitterServiceTest extends TestCase {
                         $get_tweet_2_response
         );
 
-        $service = new TwitterService($client, $storage, $logger);
+        $eventBus = $this
+                ->getMockBuilder(EventBus::class)
+                ->getMock();
+        $eventBus
+                ->expects($this->exactly(2))
+                ->method('dispatch')
+                ->with($this->isInstanceOf(TwitterMentionReceived::class));
+
+        $service = new TwitterService($client, $storage, $logger, $eventBus);
 
         $expected = [];
         $created_at_1 = DateTime::createFromFormat(DateTime::RFC3339_EXTENDED, "2021-12-24T06:52:28.000Z");
@@ -139,11 +150,19 @@ class TwitterServiceTest extends TestCase {
                 ->willReturn($get_tweet_1_response)
         ;
 
-        $service = new TwitterService($client, $storage, $logger);
+        $eventBus = $this
+                ->getMockBuilder(EventBus::class)
+                ->getMock();
+        $eventBus
+                ->expects($this->once())
+                ->method('dispatch')
+                ->with($this->isInstanceOf(TwitterMentionReceived::class));
+
+        $service = new TwitterService($client, $storage, $logger, $eventBus);
 
         $expected = [];
         $created_at_1 = DateTime::createFromFormat(DateTime::RFC3339_EXTENDED, "2021-12-24T06:52:28.000Z");
-$created_at_3 = DateTime::createFromFormat(DateTime::RFC3339_EXTENDED, "2021-12-24T06:51:03.000Z");
+        $created_at_3 = DateTime::createFromFormat(DateTime::RFC3339_EXTENDED, "2021-12-24T06:51:03.000Z");
 
 
         $ref_tweet = (new Tweet())
@@ -158,7 +177,7 @@ $created_at_3 = DateTime::createFromFormat(DateTime::RFC3339_EXTENDED, "2021-12-
         $ref = (new TweetReference())
                 ->setTweet($ref_tweet)
                 ->setType('replied_to');
-        
+
         $expected[] = $tweet = (new Tweet())
                 ->setAuthorName("TheCleverClick")
                 ->setAuthorUsername("TheCleverClick")

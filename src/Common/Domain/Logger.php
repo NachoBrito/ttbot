@@ -6,7 +6,7 @@ namespace NachoBrito\TTBot\Common\Domain;
  *
  * @author administrador
  */
-interface LoggerInterface {
+interface Logger {
 
     /**
      * System is unusable.
