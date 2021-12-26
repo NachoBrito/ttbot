@@ -74,10 +74,11 @@ class BirdElephantTwitterClient implements TwitterClient {
      * @return mixed
      */
     public function getTweet(string $id, array $options) {
+        $this->logger->info("Loading tweet $id");
         $client = $this->getClient();        
         $tweet = $client->tweets()->get($id, $options);          
         
-        $this->logger->debug("+++TWEET+++:\n" . json_encode($tweet, JSON_PRETTY_PRINT) . " \n\n");
+//        $this->logger->debug("+++TWEET+++:\n" . json_encode($tweet, JSON_PRETTY_PRINT) . " \n\n");
         
         return $tweet;
     }

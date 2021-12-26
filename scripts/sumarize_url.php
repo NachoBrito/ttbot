@@ -14,7 +14,11 @@ $cmd = new SummarizeUrlCommand($url);
 
 /** @var CommandBus $bus */
 /** @var ContainerBuilder $container */
+echo "Building container: " . convert(memory_get_usage(true)) . "\n";
 $container = getContainer();
+echo "Container built. Memory used: " . convert(memory_get_usage(true)) . "\n";
+$def = $container->getDefinition(CommandBus::class);
+//die(print_r($def, TRUE));
 $bus = $container->get(CommandBus::class);
-
+echo "Got command bus. Memory used: " . convert(memory_get_usage(true)) . "\n";
 $bus->dispatch($cmd);

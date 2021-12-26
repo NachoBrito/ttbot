@@ -2,12 +2,8 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use NachoBrito\TTBot\Article\Domain\ArticleSummarizer;
 use NachoBrito\TTBot\Article\Domain\HTMLTextExtractor;
 use NachoBrito\TTBot\Article\Infraestructure\ChainTextExtractor;
-use NachoBrito\TTBot\Article\Infraestructure\ReadabilityTextExtractor;
-use NachoBrito\TTBot\Article\Infraestructure\TextRankSummarizer;
-use NachoBrito\TTBot\Article\Infraestructure\YooperSummarizer;
 use NachoBrito\TTBot\Common\Domain\Bus\Command\CommandBus;
 use NachoBrito\TTBot\Common\Domain\Bus\Command\CommandHandler;
 use NachoBrito\TTBot\Common\Domain\Bus\Command\CommandResolver;
@@ -19,7 +15,6 @@ use NachoBrito\TTBot\Common\Domain\Bus\Query\QueryHandler;
 use NachoBrito\TTBot\Common\Domain\Bus\Query\QueryResolver;
 use NachoBrito\TTBot\Common\Domain\ConfigLoader;
 use NachoBrito\TTBot\Common\Domain\Logger;
-use NachoBrito\TTBot\Common\Domain\LoggerInterface;
 use NachoBrito\TTBot\Common\Infraestructure\ConsoleLogger;
 use NachoBrito\TTBot\Common\Infraestructure\INIConfigLoader;
 use NachoBrito\TTBot\Common\Infraestructure\LoggingCommandBus;
@@ -89,30 +84,33 @@ return function (ContainerConfigurator $configurator) {
     /*
      * COMMAND BUS CONFIGURATION
      */
-    $services->set(SymfonyCommandBus::class, SymfonyCommandBus::class)
+    $services->set(CommandBus::class, SymfonyCommandBus::class)
             ->args([
                 tagged_iterator('nachobrito.ttbot.commandhandler'),
                 service(CommandResolver::class)
             ]);
     
-    $services->set(CommandBus::class, LoggingCommandBus::class)
-            ->args([
-                service(SymfonyCommandBus::class),
-                service(Logger::class)
-            ]);
+    $services->set(LoggingCommandBus::class)
+            ->private()
+            ->autoconfigure(FALSE)
+            ->decorate(CommandBus::class)
+            ->args([service(".inner")])
+            ;
     /*
      * QUERY BUS CONFIGURATION
      */    
-    $services->set(SymfonyQueryBus::class, SymfonyQueryBus::class)
+    $services->set(QueryBus::class, SymfonyQueryBus::class)
             ->args([
                 tagged_iterator('nachobrito.ttbot.queryhandler'),
                 service(QueryResolver::class)
             ]);
     
-    $services->set(QueryBus::class, LoggingQueryBus::class)
-            ->args([
-                service(SymfonyQueryBus::class),
-                service(Logger::class)
-            ]);    
+    $services->set(LoggingQueryBus::class)
+            ->private()
+            ->autoconfigure(FALSE)
+            ->decorate(QueryBus::class)
+            ->args([service(".inner")])
+            ;
+            
 };
 

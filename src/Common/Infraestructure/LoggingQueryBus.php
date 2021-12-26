@@ -8,7 +8,6 @@ use NachoBrito\TTBot\Common\Domain\Bus\Query\Query;
 use NachoBrito\TTBot\Common\Domain\Bus\Query\QueryBus;
 use NachoBrito\TTBot\Common\Domain\Bus\Query\Result;
 use NachoBrito\TTBot\Common\Domain\Logger;
-use NachoBrito\TTBot\Common\Infraestructure\Symfony\SymfonyQueryBus;
 
 /**
  * 
@@ -19,7 +18,7 @@ class LoggingQueryBus implements QueryBus {
 
     /**
      * 
-     * @var SymfonyQueryBus
+     * @var QueryBus
      */
     private $bus;
 
@@ -34,7 +33,7 @@ class LoggingQueryBus implements QueryBus {
      * @param QueryBus $bus
      * @param Logger $logger
      */
-    public function __construct(SymfonyQueryBus $bus, Logger $logger) {
+    public function __construct(QueryBus $bus, Logger $logger) {
         $this->bus = $bus;
         $this->logger = $logger;
     }

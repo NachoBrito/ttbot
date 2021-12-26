@@ -10,6 +10,7 @@ use NachoBrito\TTBot\Common\Domain\Storage;
 use NachoBrito\TTBot\Common\Infraestructure\BufferedLogger;
 use NachoBrito\TTBot\Common\Infraestructure\InMemoryStorage;
 use NachoBrito\TTBot\Twitter\Domain\Event\TwitterMentionReceived;
+use NachoBrito\TTBot\Twitter\Domain\Event\TwitterMentionReceivedEvent;
 use NachoBrito\TTBot\Twitter\Domain\Model\Tweet;
 use NachoBrito\TTBot\Twitter\Domain\Model\TweetReference;
 use NachoBrito\TTBot\Twitter\Domain\TwitterClient;
@@ -68,7 +69,7 @@ class TwitterServiceTest extends TestCase {
         $eventBus
                 ->expects($this->exactly(2))
                 ->method('dispatch')
-                ->with($this->isInstanceOf(TwitterMentionReceived::class));
+                ->with($this->isInstanceOf(TwitterMentionReceivedEvent::class));
 
         $service = new TwitterService($client, $storage, $logger, $eventBus);
 
@@ -156,7 +157,7 @@ class TwitterServiceTest extends TestCase {
         $eventBus
                 ->expects($this->once())
                 ->method('dispatch')
-                ->with($this->isInstanceOf(TwitterMentionReceived::class));
+                ->with($this->isInstanceOf(TwitterMentionReceivedEvent::class));
 
         $service = new TwitterService($client, $storage, $logger, $eventBus);
 

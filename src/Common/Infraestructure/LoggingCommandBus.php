@@ -19,7 +19,7 @@ class LoggingCommandBus implements CommandBus{
     
     /**
      * 
-     * @var SymfonyCommandBus
+     * @var CommandBus
      */
     private $bus;
     
@@ -34,7 +34,7 @@ class LoggingCommandBus implements CommandBus{
      * @param CommandBus $bus
      * @param Logger $logger
      */
-    public function __construct(SymfonyCommandBus $bus, Logger $logger) {
+    public function __construct(CommandBus $bus, Logger $logger) {
         $this->bus = $bus;
         $this->logger = $logger;
     }
@@ -45,15 +45,15 @@ class LoggingCommandBus implements CommandBus{
      * @return void
      */
     public function dispatch(Command $command): void {
-        $t0 = microtime();
+        $t0 = microtime(TRUE);
         
         $class = get_class($command);        
         $this->logger->info("Executting $class");
         
         $this->bus->dispatch($command);
         
-        $t1 = microtime();
-        $dt = 1000 * ($t1 - $t0);
+        $t1 = microtime(TRUE);
+        $dt = round(1000 * ($t1 - $t0));
         $this->logger->info("$class executed in $dt ms.");
     }
 

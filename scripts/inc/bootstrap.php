@@ -5,6 +5,7 @@ declare( strict_types=1 );
 use NachoBrito\TTBot\Common\Domain\ConfigLoader;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
@@ -29,6 +30,7 @@ class ContainerProvider {
             $loader = new PhpFileLoader($containerBuilder, new FileLocator(__DIR__));
             $loader->load('services.php');
             $containerBuilder->compile();
+            
             self::$container = $containerBuilder;
             
             /** @var ConfigLoader $config */
@@ -46,4 +48,9 @@ class ContainerProvider {
  */
 function getContainer(): ContainerBuilder {
     return ContainerProvider::getContainer();
+}
+function convert($size)
+{
+    $unit=array('b','kb','mb','gb','tb','pb');
+    return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
 }

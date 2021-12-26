@@ -1,21 +1,17 @@
 #!/usr/bin/php
 <?php
 
-use NachoBrito\TTBot\Common\Domain\Bus\Query\QueryBus;
-use NachoBrito\TTBot\Twitter\Application\MentionsQuery;
+use NachoBrito\TTBot\Article\Application\HandleTwitterSummarizeRequestsCommand;
+use NachoBrito\TTBot\Common\Domain\Bus\Command\CommandBus;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 require_once __DIR__ . '/inc/bootstrap.php';
 
-$query = new MentionsQuery;
+$cmd = new HandleTwitterSummarizeRequestsCommand();
 
-/** @var QueryBus $bus */
+/** @var CommandBus $bus */
 /** @var ContainerBuilder $container */
-echo "Get container\n";
 $container = getContainer();
-echo "Get query bus\n";
-$bus = $container->get(QueryBus::class);
-echo "Execute query\n";
-$result = $bus->ask($query);
-echo "print results\n";
-print_r($result->getItems());
+$bus = $container->get(CommandBus::class);
+
+$bus->dispatch($cmd);

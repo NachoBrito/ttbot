@@ -4,12 +4,10 @@ declare( strict_types=1 );
 
 namespace NachoBrito\TTBot\Twitter\Application;
 
-use DateTime;
 use NachoBrito\TTBot\Common\Domain\Bus\Event\EventBus;
 use NachoBrito\TTBot\Common\Domain\Logger;
 use NachoBrito\TTBot\Common\Domain\Storage;
-use NachoBrito\TTBot\Twitter\Domain\Event\TwitterMentionReceived;
-use NachoBrito\TTBot\Twitter\Domain\Model\Tweet;
+use NachoBrito\TTBot\Twitter\Domain\Event\TwitterMentionReceivedEvent;
 use NachoBrito\TTBot\Twitter\Domain\TweetFactory;
 use NachoBrito\TTBot\Twitter\Domain\TwitterClient;
 
@@ -88,7 +86,7 @@ class TwitterService {
 
             $t = TweetFactory::fromAPIResponse($info);
             
-            $this->eventBus->dispatch(new TwitterMentionReceived($t));
+            $this->eventBus->dispatch(new TwitterMentionReceivedEvent($t));
             
             $result[] = $t;
         }

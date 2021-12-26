@@ -7,6 +7,7 @@ use NachoBrito\TTBot\Common\Domain\Bus\Event\Event;
 use NachoBrito\TTBot\Common\Domain\Bus\Event\EventBus;
 use NachoBrito\TTBot\Common\Domain\Bus\Event\EventResolver;
 use NachoBrito\TTBot\Common\Domain\Bus\Event\EventSubscriber;
+use Symfony\Component\Messenger\Exception\NoHandlerForMessageException;
 use Symfony\Component\Messenger\Handler\HandlersLocator;
 use Symfony\Component\Messenger\MessageBus;
 use Symfony\Component\Messenger\Middleware\HandleMessageMiddleware;
@@ -40,7 +41,12 @@ class SymfonyEventBus implements EventBus {
     }
 
     public function dispatch(Event $event): void {
-        $this->bus->dispatch($event);
+        try
+        {
+            $this->bus->dispatch($event);
+        } catch (NoHandlerForMessageException $ex) {
+            //No handlers, do nothing.
+        }        
     }
 
 }

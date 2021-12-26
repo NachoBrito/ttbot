@@ -22,42 +22,42 @@ class ConsoleLoggerTest extends TestCase {
         $logger = new ConsoleLogger();
         ob_start();
         $logger->alert($message, $context);
-        self::assertSame("[NachoBrito\TTBot\Common\Infraestructure\ConsoleLoggerTest][ALERT] $message " . json_encode($context) . "\n",ob_get_contents());
+        self::assertSame("[ConsoleLoggerTest][ALERT] $message " . json_encode($context) . "\n",ob_get_contents());
         ob_end_clean();
         
         ob_start();
         $logger->critical($message, $context);
-        self::assertSame("[NachoBrito\TTBot\Common\Infraestructure\ConsoleLoggerTest][CRITICAL] $message " . json_encode($context) . "\n",ob_get_contents());
+        self::assertSame("[ConsoleLoggerTest][CRITICAL] $message " . json_encode($context) . "\n",ob_get_contents());
         ob_end_clean();
         
         ob_start();
         $logger->debug($message, $context);
-        self::assertSame("[NachoBrito\TTBot\Common\Infraestructure\ConsoleLoggerTest][DEBUG] $message " . json_encode($context) . "\n",ob_get_contents());
+        self::assertSame("[ConsoleLoggerTest][DEBUG] $message " . json_encode($context) . "\n",ob_get_contents());
         ob_end_clean();
         
         ob_start();
         $logger->emergency($message, $context);
-        self::assertSame("[NachoBrito\TTBot\Common\Infraestructure\ConsoleLoggerTest][EMERGENCY] $message " . json_encode($context) . "\n",ob_get_contents());
+        self::assertSame("[ConsoleLoggerTest][EMERGENCY] $message " . json_encode($context) . "\n",ob_get_contents());
         ob_end_clean();
         
         ob_start();
         $logger->error($message, $context);
-        self::assertSame("[NachoBrito\TTBot\Common\Infraestructure\ConsoleLoggerTest][ERROR] $message " . json_encode($context) . "\n",ob_get_contents());
+        self::assertSame("[ConsoleLoggerTest][ERROR] $message " . json_encode($context) . "\n",ob_get_contents());
         ob_end_clean();
         
         ob_start();
         $logger->info($message, $context);
-        self::assertSame("[NachoBrito\TTBot\Common\Infraestructure\ConsoleLoggerTest][INFO] $message " . json_encode($context) . "\n",ob_get_contents());
+        self::assertSame("[ConsoleLoggerTest][INFO] $message " . json_encode($context) . "\n",ob_get_contents());
         ob_end_clean();
         
         ob_start();
         $logger->notice($message, $context);
-        self::assertSame("[NachoBrito\TTBot\Common\Infraestructure\ConsoleLoggerTest][NOTICE] $message " . json_encode($context) . "\n",ob_get_contents());
+        self::assertSame("[ConsoleLoggerTest][NOTICE] $message " . json_encode($context) . "\n",ob_get_contents());
         ob_end_clean();
         
         ob_start();
         $logger->warning($message, $context);
-        self::assertSame("[NachoBrito\TTBot\Common\Infraestructure\ConsoleLoggerTest][WARNING] $message " . json_encode($context) . "\n",ob_get_contents());
+        self::assertSame("[ConsoleLoggerTest][WARNING] $message " . json_encode($context) . "\n",ob_get_contents());
         ob_end_clean();
         
     }

@@ -13,65 +13,45 @@ use NachoBrito\TTBot\Common\Domain\Logger;
  */
 class ConsoleLogger implements Logger {
 
-    private function getTag($caller) {
-        
+    private function log($level, $message, array $context = array()): void {
+        $trace = debug_backtrace();
+        $parts = explode("\\",$trace[2]['class']);
+        $class = end($parts);
+
+        echo "[$class][$level] $message " . json_encode($context) . "\n";        
     }
 
     //put your code here
     public function alert($message, array $context = array()): void {
-        $trace = debug_backtrace();
-        $class = $trace[1]['class'];
-
-        echo "[$class][ALERT] $message " . json_encode($context) . "\n";
+        $this->log('ALERT', $message, $context);
     }
 
     public function critical($message, array $context = array()): void {
-        $trace = debug_backtrace();
-        $class = $trace[1]['class'];
-
-        echo "[$class][CRITICAL] $message " . json_encode($context) . "\n";
+        $this->log('CRITICAL', $message, $context);
     }
 
     public function debug($message, array $context = array()): void {
-        $trace = debug_backtrace();
-        $class = $trace[1]['class'];
-
-        echo "[$class][DEBUG] $message " . json_encode($context) . "\n";
+        $this->log('DEBUG', $message, $context);
     }
 
     public function emergency($message, array $context = array()): void {
-        $trace = debug_backtrace();
-        $class = $trace[1]['class'];
-
-        echo "[$class][EMERGENCY] $message " . json_encode($context) . "\n";
+        $this->log('EMERGENCY', $message, $context);
     }
 
     public function error($message, array $context = array()): void {
-        $trace = debug_backtrace();
-        $class = $trace[1]['class'];
-
-        echo "[$class][ERROR] $message " . json_encode($context) . "\n";
+        $this->log('ERROR', $message, $context);
     }
 
     public function info($message, array $context = array()): void {
-        $trace = debug_backtrace();
-        $class = $trace[1]['class'];
-
-        echo "[$class][INFO] $message " . json_encode($context) . "\n";
+        $this->log('INFO', $message, $context);
     }
 
     public function notice($message, array $context = array()): void {
-        $trace = debug_backtrace();
-        $class = $trace[1]['class'];
-
-        echo "[$class][NOTICE] $message " . json_encode($context) . "\n";
+        $this->log('NOTICE', $message, $context);
     }
 
     public function warning($message, array $context = array()): void {
-        $trace = debug_backtrace();
-        $class = $trace[1]['class'];
-
-        echo "[$class][WARNING] $message " . json_encode($context) . "\n";
+        $this->log('WARNING', $message, $context);
     }
 
 }
