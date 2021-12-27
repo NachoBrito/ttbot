@@ -22,6 +22,11 @@ class TwitterService {
     const LAST_MENTION_ID = 'LAST_MENTION_ID';
     const DEFAULT_MAX_THREAD_LENGTH = 5;
 
+    private $forbidden_search = [
+    ];
+    private $forbidden_replace = [
+    ];
+
     /**
      * 
      * @var TwitterClient
@@ -58,6 +63,9 @@ class TwitterService {
         $this->storage = $storage;
         $this->logger = $logger;
         $this->eventBus = $eventBus;
+
+        $this->forbidden_search[] = '@' . getenv('TWITTER_USERNAME');
+        $this->forbidden_replace[] = '{me}';
     }
 
     /**
@@ -132,14 +140,14 @@ class TwitterService {
         do {
             //FIFO
             $sentence = array_shift($sentences);
+            $sentence = $this->cleanForbiddenWords($sentence);
             $parts = $this->breakSentence($sentence, $max_length, $separator, $sufix);
-            
-            if(count($parts) + $count > $max_tweets)
-            {
+
+            if (count($parts) + $count > $max_tweets) {
                 //do not include parts if there is no room for all of them.
                 continue;
             }
-            
+
             foreach ($parts as $part) {
                 $tweets[] = trim($part);
                 $count++;
@@ -191,6 +199,14 @@ class TwitterService {
             }
         }
         return $parts;
+    }
+
+    /**
+     * 
+     * @param type $candidate
+     */
+    private function cleanForbiddenWords(string $candidate): string {
+        return str_replace($this->forbidden_search, $this->forbidden_replace, $candidate);
     }
 
 }

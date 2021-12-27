@@ -227,23 +227,33 @@ class TwitterServiceTest extends TestCase {
             ["[...] upload an image and attach it to a tweet. We will match that functionality as it comes online in Twitter API v2\n2/2", "1474271385283354629"]
         ];
         $this->testPostReplyThreadCase($sentences, 2, $expected);
-        
+
         $sentences = [
             "Pequeña frase cortá"
         ];
         $expected = [
-            ["Pequeña frase cortá", "1474271385283354629"],            
+            ["Pequeña frase cortá", "1474271385283354629"],
         ];
         $this->testPostReplyThreadCase($sentences, 2, $expected);
-        
+
         $sentences = [
             "a b c d e f g h i j k l m ñ o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r"
         ];
         $expected = [
-            ["a b c d e f g h i j k l m ñ o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r", "1474271385283354629"],            
+            ["a b c d e f g h i j k l m ñ o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r", "1474271385283354629"],
         ];
         $this->testPostReplyThreadCase($sentences, 2, $expected);
-        
+
+
+        putenv('TWITTER_USERNAME=THE_TWITTER_USER');
+        $sentences = [
+            "Never mention my own username: @THE_TWITTER_USER"
+        ];
+        $expected = [
+            ["Never mention my own username: {me}", "1474271385283354629"],
+        ];
+        $this->testPostReplyThreadCase($sentences, 2, $expected);
+        putenv('TWITTER_USERNAME');
     }
 
     /**
@@ -258,10 +268,12 @@ class TwitterServiceTest extends TestCase {
                 ->getMock();
 
         $count = count($expected);
+        $responses = array_fill(0, $count, '1474271385283354629');
         $client
                 ->expects($this->exactly($count))
                 ->method('tweet')
-                ->withConsecutive(...$expected);
+                ->withConsecutive(...$expected)
+                ->willReturnOnConsecutiveCalls(...$responses);
 
 
         $eventBus = $this
