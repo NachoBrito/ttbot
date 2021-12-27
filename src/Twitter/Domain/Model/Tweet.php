@@ -14,7 +14,7 @@ use DateTime;
  */
 class Tweet {
     
-    const MAX_LENGTH = 140;
+    const DEFAULT_MAX_LENGTH = 280;
     
     /**
      * 

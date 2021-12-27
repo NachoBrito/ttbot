@@ -136,12 +136,13 @@ class TwitterService {
         $sufix = "\n%d/%d";
         $separator = "[...]";
         //assume max count will be 2 chars max.
-        $max_length = Tweet::MAX_LENGTH;
+        $max_length_env = (int) getenv('TRHEADS_MAX_TWEET_LENGTH');
+        $max_length = $max_length_env ? $max_length_env : Tweet::DEFAULT_MAX_LENGTH;
         do {
             //FIFO
             $sentence = array_shift($sentences);
-            $sentence = $this->cleanForbiddenWords($sentence);
-            $parts = $this->breakSentence($sentence, $max_length, $separator, $sufix);
+            $clean_sentence = $this->cleanForbiddenWords($sentence);
+            $parts = $this->breakSentence($clean_sentence, $max_length, $separator, $sufix);
 
             if (count($parts) + $count > $max_tweets) {
                 //do not include parts if there is no room for all of them.

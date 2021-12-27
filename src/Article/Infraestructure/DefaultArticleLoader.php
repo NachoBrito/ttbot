@@ -72,7 +72,7 @@ class DefaultArticleLoader implements ArticleLoader {
         
         $text = $this->htmlExtractor->extractText($response->getContent());
 
-        $this->logger->debug("Text:\n$text");
+//        $this->logger->debug("Text:\n$text");
         
         $headers = $response->getHeaders();
         if (isset($headers['Content-Language'])) {

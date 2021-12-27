@@ -219,6 +219,7 @@ class TwitterServiceTest extends TestCase {
      * 
      */
     public function testPostReplyThread() {
+        putenv('TRHEADS_MAX_TWEET_LENGTH=140');
         $sentences = [
             "The Twitter API v2 doesn't yet support media uploads, so for the time being we are using the v1.1 media upload endpoint to upload an image and attach it to a tweet. We will match that functionality as it comes online in Twitter API v2"
         ];
@@ -254,6 +255,7 @@ class TwitterServiceTest extends TestCase {
         ];
         $this->testPostReplyThreadCase($sentences, 2, $expected);
         putenv('TWITTER_USERNAME');
+        putenv('TRHEADS_MAX_TWEET_LENGTH');
     }
 
     /**

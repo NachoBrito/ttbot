@@ -103,7 +103,9 @@ class BirdElephantTwitterClient implements TwitterClient {
         }
 
         $client = $this->getClient();
+        $this->logger->debug(" >>> Tweet (reply to $reply_to_id): $text");
         $result = $client->tweets()->tweet($tweet);
+        $this->logger->debug(" <<< " . json_encode($result));
         
         return $result->data->id;        
     }
