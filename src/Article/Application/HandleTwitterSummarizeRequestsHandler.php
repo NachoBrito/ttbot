@@ -71,6 +71,8 @@ class HandleTwitterSummarizeRequestsHandler implements CommandHandler {
             $this->logger->info("No new mentions found to process.");
             return;
         }
+
+        $max_tweets = (int) getenv('THREADS_MAX_TWEETS');
         foreach ($mentions as $mention) {
             /** @var Tweet $mention */
             $this->logger->info("Processing mention " . $mention->getId());
@@ -85,7 +87,11 @@ class HandleTwitterSummarizeRequestsHandler implements CommandHandler {
             $article = $this->loader->loadArticle($url);
 
             $summary = $this->summarizer->summarize($article);
-            $this->logger->info("Summary generated: " . json_encode($summary->getSentences(), JSON_PRETTY_PRINT));
+            $this->logger->info("Summary generated with " . count($summary->getSentences()) . " sentences");
+
+            $this
+                    ->twitter
+                    ->postReplyThread($mention, $summary->getSentences(), $max_tweets);
         }
     }
 

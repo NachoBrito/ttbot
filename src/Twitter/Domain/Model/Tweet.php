@@ -13,6 +13,9 @@ use DateTime;
  * @author nacho
  */
 class Tweet {
+    
+    const MAX_LENGTH = 140;
+    
     /**
      * 
      * @var string

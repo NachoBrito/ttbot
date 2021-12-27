@@ -8,14 +8,11 @@ use DateTime;
 use NachoBrito\TTBot\Common\Domain\Bus\Event\EventBus;
 use NachoBrito\TTBot\Common\Domain\Storage;
 use NachoBrito\TTBot\Common\Infraestructure\BufferedLogger;
-use NachoBrito\TTBot\Common\Infraestructure\InMemoryStorage;
-use NachoBrito\TTBot\Twitter\Domain\Event\TwitterMentionReceived;
 use NachoBrito\TTBot\Twitter\Domain\Event\TwitterMentionReceivedEvent;
 use NachoBrito\TTBot\Twitter\Domain\Model\Tweet;
 use NachoBrito\TTBot\Twitter\Domain\Model\TweetReference;
 use NachoBrito\TTBot\Twitter\Domain\TwitterClient;
 use PHPUnit\Framework\TestCase;
-use Serializable;
 use function GuzzleHttp\json_decode;
 
 /**
@@ -216,6 +213,74 @@ class TwitterServiceTest extends TestCase {
             }
         };
         return $storage;
+    }
+
+    /**
+     * 
+     */
+    public function testPostReplyThread() {
+        $sentences = [
+            "The Twitter API v2 doesn't yet support media uploads, so for the time being we are using the v1.1 media upload endpoint to upload an image and attach it to a tweet. We will match that functionality as it comes online in Twitter API v2"
+        ];
+        $expected = [
+            ["The Twitter API v2 doesn't yet support media uploads, so for the time being we are using the v1.1 media upload endpoint to [...]\n1/2", "1474271385283354629"],
+            ["[...] upload an image and attach it to a tweet. We will match that functionality as it comes online in Twitter API v2\n2/2", "1474271385283354629"]
+        ];
+        $this->testPostReplyThreadCase($sentences, 2, $expected);
+        
+        $sentences = [
+            "Pequeña frase cortá"
+        ];
+        $expected = [
+            ["Pequeña frase cortá", "1474271385283354629"],            
+        ];
+        $this->testPostReplyThreadCase($sentences, 2, $expected);
+        
+        $sentences = [
+            "a b c d e f g h i j k l m ñ o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r"
+        ];
+        $expected = [
+            ["a b c d e f g h i j k l m ñ o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r", "1474271385283354629"],            
+        ];
+        $this->testPostReplyThreadCase($sentences, 2, $expected);
+        
+    }
+
+    /**
+     * 
+     */
+    private function testPostReplyThreadCase($sentences, $max_tweets, $expected) {
+        $logger = new BufferedLogger();
+        $storage = $this->getStorage();
+
+        $client = $this
+                ->getMockBuilder(TwitterClient::class)
+                ->getMock();
+
+        $count = count($expected);
+        $client
+                ->expects($this->exactly($count))
+                ->method('tweet')
+                ->withConsecutive(...$expected);
+
+
+        $eventBus = $this
+                ->getMockBuilder(EventBus::class)
+                ->getMock();
+
+        $service = new TwitterService($client, $storage, $logger, $eventBus);
+        $now = new DateTime();
+        $originalTweet = (new Tweet())
+                ->setAuthorName("El Origen de PI")
+                ->setAuthorUsername("ElOrigenDePI")
+                ->setAuthorId("885142155580276736")
+                ->setCreatedAt($now)
+                ->setId("1474271385283354629")
+                ->setLang("und")
+                ->setText("https://t.co/orEyiFG6nR")
+        ;
+
+        $service->postReplyThread($originalTweet, $sentences, $max_tweets);
     }
 
 }
