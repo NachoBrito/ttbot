@@ -19,6 +19,7 @@ use NachoBrito\TTBot\Common\Infraestructure\ConsoleLogger;
 use NachoBrito\TTBot\Common\Infraestructure\INIConfigLoader;
 use NachoBrito\TTBot\Common\Infraestructure\LoggingCommandBus;
 use NachoBrito\TTBot\Common\Infraestructure\LoggingQueryBus;
+use NachoBrito\TTBot\Common\Infraestructure\MonologLogger;
 use NachoBrito\TTBot\Common\Infraestructure\Symfony\SymfonyCommandBus;
 use NachoBrito\TTBot\Common\Infraestructure\Symfony\SymfonyEventBus;
 use NachoBrito\TTBot\Common\Infraestructure\Symfony\SymfonyQueryBus;
@@ -42,7 +43,8 @@ return function (ContainerConfigurator $configurator) {
             ->instanceof(QueryHandler::class)            
             ->tag('nachobrito.ttbot.queryhandler');
     
-    $services->set(Logger::class, ConsoleLogger::class);
+//    $services->set(Logger::class, ConsoleLogger::class);
+    $services->set(Logger::class, MonologLogger::class);
     //$services->set(ArticleSummarizer::class, TextRankSummarizer::class);
     //$services->set(ArticleSummarizer::class, YooperSummarizer::class);
     
