@@ -5,7 +5,7 @@ namespace NachoBrito\TTBot\Article\Apoplication;
 
 use NachoBrito\TTBot\Article\Application\SummarizeArticleCommand;
 use NachoBrito\TTBot\Article\Application\SummarizeArticleHandler;
-use NachoBrito\TTBot\Article\Domain\Article;
+use NachoBrito\TTBot\Article\Domain\Model\Article;
 use NachoBrito\TTBot\Article\Domain\ArticleSummarizer;
 use NachoBrito\TTBot\Article\Domain\Event\ArticleSummaryCreatedEvent;
 use NachoBrito\TTBot\Common\Domain\Bus\Event\Event;
@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * 
  *
- * @author administrador
+ * @author nacho
  */
 class SummarizeArticleHandlerTest extends TestCase {
 

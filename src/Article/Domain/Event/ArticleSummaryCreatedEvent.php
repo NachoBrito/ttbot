@@ -1,7 +1,7 @@
 <?php declare( strict_types=1 ); 
 namespace NachoBrito\TTBot\Article\Domain\Event;
 
-use NachoBrito\TTBot\Article\Domain\ArticleSummary;
+use NachoBrito\TTBot\Article\Domain\Model\ArticleSummary;
 use NachoBrito\TTBot\Common\Domain\Bus\Event\Event;
 
 

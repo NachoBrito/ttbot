@@ -1,0 +1,50 @@
+{
+    "data": {
+        "created_at": "2021-12-24T06:52:28.000Z",
+        "text": "@ElOrigenDePI @ElOrigenDePI",
+        "lang": "und",
+        "id": "1474271740675121185",
+        "public_metrics": {
+            "retweet_count": 0,
+            "reply_count": 0,
+            "like_count": 0,
+            "quote_count": 0
+        },
+        "referenced_tweets": [
+            {
+                "type": "replied_to",
+                "id": "1474271385283354629"
+            }
+        ],
+        "author_id": "715508356128116736"
+    },
+    "includes": {
+        "users": [
+            {
+                "id": "715508356128116736",
+                "name": "TheCleverClick",
+                "username": "TheCleverClick"
+            },
+            {
+                "id": "885142155580276736",
+                "name": "El Origen de PI",
+                "username": "ElOrigenDePI"
+            }
+        ],
+        "tweets": [
+            {
+                "created_at": "2021-12-24T06:51:03.000Z",
+                "text": "https:\/\/t.co\/orEyiFG6nR",
+                "lang": "und",
+                "id": "1474271385283354629",
+                "public_metrics": {
+                    "retweet_count": 0,
+                    "reply_count": 1,
+                    "like_count": 0,
+                    "quote_count": 0
+                },
+                "author_id": "885142155580276736"
+            }
+        ]
+    }
+}

@@ -4,14 +4,14 @@ declare( strict_types=1 );
 
 namespace NachoBrito\TTBot\Article\Domain\Event;
 
-use NachoBrito\TTBot\Article\Domain\Article;
-use NachoBrito\TTBot\Article\Domain\ArticleSummary;
+use NachoBrito\TTBot\Article\Domain\Model\Article;
+use NachoBrito\TTBot\Article\Domain\Model\ArticleSummary;
 use PHPUnit\Framework\TestCase;
 
 /**
  * 
  *
- * @author administrador
+ * @author nacho
  */
 class ArticleSummaryCreatedEventTest extends TestCase {
 

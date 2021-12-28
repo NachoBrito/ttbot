@@ -1,5 +1,5 @@
 <?php declare( strict_types=1 ); 
-namespace NachoBrito\TTBot\Article\Domain;
+namespace NachoBrito\TTBot\Article\Domain\Model;
 
 class Article
 {
@@ -14,7 +14,12 @@ class Article
     /**
      * @var string
      */
-    private $text;
+    private $text;    
+    /**
+     * 
+     * @var string
+     */
+    private $language;
 
     /**
      * @var array<string,string>
@@ -116,4 +121,20 @@ class Article
 
         return $this;
     }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getLanguage(): string {
+        return $this->language;
+    }
+
+    public function setLanguage(string $language):Article {
+        $this->language = $language;
+        return $this;
+    }
+
+
+    
 }

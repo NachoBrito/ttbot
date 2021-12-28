@@ -1,0 +1,16 @@
+<?php
+
+namespace NachoBrito\TTBot\Article\Domain;
+
+/**
+ *
+ * @author administrador
+ */
+interface HTMLTextExtractor {
+    /**
+     * 
+     * @param string $html
+     * @return string
+     */
+    public function extractText(string $html):string;
+}

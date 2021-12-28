@@ -1,6 +1,6 @@
 <?php
 
-namespace NachoBrito\TTBot\Article\Domain;
+namespace NachoBrito\TTBot\Article\Domain\Model;
 
 use PHPUnit\Framework\TestCase;
 

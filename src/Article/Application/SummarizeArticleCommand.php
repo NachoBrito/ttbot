@@ -1,9 +1,12 @@
 <?php declare( strict_types=1 ); 
 namespace NachoBrito\TTBot\Article\Application;
 
-use NachoBrito\TTBot\Article\Domain\Article;
+use NachoBrito\TTBot\Article\Domain\Model\Article;
 use NachoBrito\TTBot\Common\Domain\Bus\Command\Command;
 
+/**
+ * 
+ */
 class SummarizeArticleCommand implements Command
 {
     /**
