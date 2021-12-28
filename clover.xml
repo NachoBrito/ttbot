@@ -20,6 +20,8 @@
       <metrics loc="50" ncloc="33" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
     </file>
     <file name="/shared/httpd/ttbot/src/Article/Application/SummarizeArticleCommand.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Article/Application/SummarizeArticleCommand.php">
+
       <class name="NachoBrito\TTBot\Article\Application\SummarizeArticleCommand" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
       </class>
@@ -31,7 +33,7 @@
       <line num="34" type="stmt" count="1"/>
       <metrics loc="33" ncloc="20" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
     </file>
-    <file name="/shared/httpd/ttbot/src/Article/Application/SummarizeArticleHandler.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Article/Application/SummarizeArticleHandler.php">
       <class name="NachoBrito\TTBot\Article\Application\SummarizeArticleHandler" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="9" coveredelements="9"/>
       </class>
@@ -76,6 +78,7 @@
       <line num="60" type="stmt" count="1"/>
       <metrics loc="62" ncloc="40" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
     </file>
+
     <file name="/shared/httpd/ttbot/src/Article/Domain/ArticleLoader.php">
       <line num="9" type="stmt" count="1"/>
       <metrics loc="8" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
@@ -163,6 +166,7 @@
     <file name="/shared/httpd/ttbot/src/Article/Domain/Model/Language.php">
       <class name="NachoBrito\TTBot\Article\Domain\Model\Language" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="4" coveredelements="4"/>
+
       </class>
       <line num="27" type="method" name="all" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="28" type="stmt" count="1"/>
@@ -221,31 +225,31 @@
       <line num="70" type="stmt" count="0"/>
       <metrics loc="74" ncloc="58" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="0" elements="16" coveredelements="0"/>
     </file>
-    <file name="/shared/httpd/ttbot/src/Common/Application/Error/InvalidInputException.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Common/Application/Error/InvalidInputException.php">
       <class name="NachoBrito\TTBot\Common\Application\Error\InvalidInputException" namespace="global">
         <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </class>
       <metrics loc="14" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <file name="/shared/httpd/ttbot/src/Common/Domain/Bus/Command/CommandBus.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Common/Domain/Bus/Command/CommandBus.php">
       <metrics loc="16" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <file name="/shared/httpd/ttbot/src/Common/Domain/Bus/Command/CommandResolver.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Common/Domain/Bus/Command/CommandResolver.php">
       <metrics loc="31" ncloc="12" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <file name="/shared/httpd/ttbot/src/Common/Domain/Bus/Command/InvalidCommandException.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Common/Domain/Bus/Command/InvalidCommandException.php">
       <class name="NachoBrito\TTBot\Common\Domain\Bus\Command\InvalidCommandException" namespace="global">
         <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </class>
       <metrics loc="12" ncloc="6" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <file name="/shared/httpd/ttbot/src/Common/Domain/Bus/Command/InvalidHandlerException.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Common/Domain/Bus/Command/InvalidHandlerException.php">
       <class name="NachoBrito\TTBot\Common\Domain\Bus\Command\InvalidHandlerException" namespace="global">
         <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </class>
       <metrics loc="12" ncloc="6" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <file name="/shared/httpd/ttbot/src/Common/Domain/Bus/Command/NameCommandResolver.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Common/Domain/Bus/Command/NameCommandResolver.php">
       <class name="NachoBrito\TTBot\Common\Domain\Bus\Command\NameCommandResolver" namespace="global">
         <metrics complexity="8" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="19" elements="24" coveredelements="24"/>
       </class>
@@ -292,7 +296,7 @@
       <line num="35" type="stmt" count="1"/>
       <metrics loc="38" ncloc="28" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="11" coveredelements="11"/>
     </file>
-    <file name="/shared/httpd/ttbot/src/Common/Domain/Bus/Event/EventBus.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Common/Domain/Bus/Event/EventBus.php">
       <line num="15" type="stmt" count="1"/>
       <metrics loc="14" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
@@ -300,18 +304,19 @@
       <metrics loc="17" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
     <file name="/shared/httpd/ttbot/src/Common/Domain/Bus/Query/InvalidHandlerException.php">
+
       <class name="NachoBrito\TTBot\Common\Domain\Bus\Query\InvalidHandlerException" namespace="global">
         <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </class>
       <metrics loc="12" ncloc="6" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <file name="/shared/httpd/ttbot/src/Common/Domain/Bus/Query/InvalidQueryException.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Common/Domain/Bus/Query/InvalidQueryException.php">
       <class name="NachoBrito\TTBot\Common\Domain\Bus\Query\InvalidQueryException" namespace="global">
         <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </class>
       <metrics loc="12" ncloc="6" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <file name="/shared/httpd/ttbot/src/Common/Domain/Bus/Query/NameQueryResolver.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Common/Domain/Bus/Query/NameQueryResolver.php">
       <class name="NachoBrito\TTBot\Common\Domain\Bus\Query\NameQueryResolver" namespace="global">
         <metrics complexity="8" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="19" elements="24" coveredelements="24"/>
       </class>
@@ -341,16 +346,16 @@
       <line num="82" type="stmt" count="2"/>
       <metrics loc="85" ncloc="53" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="19" elements="24" coveredelements="24"/>
     </file>
-    <file name="/shared/httpd/ttbot/src/Common/Domain/Bus/Query/QueryBus.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Common/Domain/Bus/Query/QueryBus.php">
       <metrics loc="12" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <file name="/shared/httpd/ttbot/src/Common/Domain/Bus/Query/QueryResolver.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Common/Domain/Bus/Query/QueryResolver.php">
       <metrics loc="32" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <file name="/shared/httpd/ttbot/src/Common/Domain/Bus/Query/Result.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Common/Domain/Bus/Query/Result.php">
       <metrics loc="23" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <file name="/shared/httpd/ttbot/src/Common/Domain/Error/DomainException.php">
+    <file name="/home/runner/work/ttbot/ttbot/src/Common/Domain/Error/DomainException.php">
       <class name="NachoBrito\TTBot\Common\Domain\Error\DomainException" namespace="global">
         <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </class>
