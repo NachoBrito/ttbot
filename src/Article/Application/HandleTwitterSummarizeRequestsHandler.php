@@ -89,9 +89,15 @@ class HandleTwitterSummarizeRequestsHandler implements CommandHandler {
             $summary = $this->summarizer->summarize($article);
             $this->logger->info("Summary generated with " . count($summary->getSentences()) . " sentences");
 
+            $sentences = [];
+            foreach($summary->getSentences() as $s)
+            {
+                $sentences[] = "\"$s\" $url";
+            }
+            
             $this
                     ->twitter
-                    ->postReplyThread($mention, $summary->getSentences(), $max_tweets);
+                    ->postReplyThread($mention, $sentences, $max_tweets);
         }
     }
 
