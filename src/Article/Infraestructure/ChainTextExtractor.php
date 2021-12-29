@@ -9,7 +9,7 @@ use NachoBrito\TTBot\Common\Domain\Logger;
 
 /**
  * 
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class ChainTextExtractor implements HTMLTextExtractor{

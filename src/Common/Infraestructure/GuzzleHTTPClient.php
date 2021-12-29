@@ -11,7 +11,7 @@ use NachoBrito\TTBot\Common\Domain\Model\HTTPResponse;
 
 /**
  * 
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class GuzzleHTTPClient implements HTTPClient {

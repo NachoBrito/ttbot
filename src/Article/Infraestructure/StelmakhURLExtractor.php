@@ -9,7 +9,7 @@ use VStelmakh\UrlHighlight\UrlHighlight;
 
 /**
  * 
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class StelmakhURLExtractor implements URLExtractor {

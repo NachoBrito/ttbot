@@ -11,7 +11,7 @@ use NachoBrito\TTBot\Article\Domain\HTMLTextExtractor;
 
 /**
  * 
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class HTML2TextExtractor implements HTMLTextExtractor{

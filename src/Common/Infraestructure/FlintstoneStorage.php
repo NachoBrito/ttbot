@@ -10,7 +10,7 @@ use Serializable;
 
 /**
  * 
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class FlintstoneStorage implements Storage {

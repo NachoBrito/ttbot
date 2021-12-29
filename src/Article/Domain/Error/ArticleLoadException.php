@@ -9,7 +9,7 @@ use RuntimeException;
 
 /**
  * 
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class ArticleLoadException extends RuntimeException{

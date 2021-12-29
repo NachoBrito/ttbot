@@ -14,7 +14,7 @@ use Symfony\Component\Messenger\Middleware\HandleMessageMiddleware;
 
 /**
  * Description of SymfonyCommandBus
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class SymfonyEventBus implements EventBus {

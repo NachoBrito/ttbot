@@ -14,7 +14,7 @@ use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 /**
  * Description of SymfonyQueryBus
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class SymfonyQueryBus implements QueryBus {

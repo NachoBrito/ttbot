@@ -12,7 +12,7 @@ use Symfony\Component\Messenger\Middleware\HandleMessageMiddleware;
 
 /**
  * Description of SymfonyCommandBus
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class SymfonyCommandBus implements CommandBus {

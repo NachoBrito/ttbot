@@ -24,7 +24,7 @@ use PhpScience\TextRank\Tool\Summarize;
 
 /**
  * 
- *
+ * @codeCoverageIgnore
  * @author administrador
  */
 class TextRankSummarizer implements ArticleSummarizer {

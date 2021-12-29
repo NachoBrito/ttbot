@@ -9,7 +9,7 @@ use NachoBrito\TTBot\Common\Domain\Bus\Command\Command;
 
 /**
  * 
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class HandleTwitterSummarizeRequestsCommand implements Command{

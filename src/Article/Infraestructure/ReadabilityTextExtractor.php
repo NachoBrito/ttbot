@@ -10,7 +10,7 @@ use NachoBrito\TTBot\Article\Domain\HTMLTextExtractor;
 
 /**
  * 
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class ReadabilityTextExtractor implements HTMLTextExtractor{

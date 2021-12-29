@@ -19,7 +19,62 @@ use PHPUnit\Framework\TestCase;
  */
 class DefaultArticleLoaderTest extends TestCase {
 
-    public function testLoad() {
+    public function testLoadWithLangHeader() {
+        $url = "The URL";
+        $html = "The HTML";
+        $text = "The text";
+        $lang = "The Language";
+        $response_headers = ['Content-Language' => [$lang]];
+        
+        $http_response = new HTTPResponse($response_headers, $html);
+        $headers = [
+            'User-Agent' => UserAgentsHelper::getUserAgent()
+        ];
+        $metadata = [];
+        
+        //httpclient
+        $httpclient = $this
+                ->getMockBuilder(HTTPClient::class)
+                ->getMock();
+        $httpclient
+                ->expects($this->once())
+                ->method('get')
+                ->with($url, $headers)
+                ->willReturn($http_response);
+        
+        //htmlextractor
+        $htmlextractor = $this
+                ->getMockBuilder(HTMLTextExtractor::class)
+                ->getMock();
+        
+        $htmlextractor
+                ->expects($this->once())
+                ->method('extractText')
+                ->with($html)
+                ->willReturn($text);  
+        
+        //languagedetector
+        $languagedetector = $this
+                ->getMockBuilder(LanguageDetector::class)
+                ->getMock();
+        
+        $languagedetector
+                ->expects($this->never())
+                ->method('detectLanguage');
+        
+        $logger = new BufferedLogger();
+        $loader = new DefaultArticleLoader($httpclient, $languagedetector, $htmlextractor, $logger);
+        
+        $article = $loader->loadArticle($url);
+        
+        self::assertSame($text, $article->getText());
+        self::assertSame($lang, $article->getLanguage());
+        self::assertSame($metadata, $article->getMetadata());        
+        self::assertSame($url, $article->getUrl());
+        self::assertGreaterThan(0, count($logger->flushLog()));
+    }
+
+    public function testLoadWithoutLangHeader() {
         $url = "The URL";
         $html = "The HTML";
         $text = "The text";
@@ -71,8 +126,7 @@ class DefaultArticleLoaderTest extends TestCase {
         
         self::assertSame($text, $article->getText());
         self::assertSame($lang, $article->getLanguage());
-        self::assertSame($metadata, $article->getMetadata());
-        //self::assertSame($text, $article->getTitle());
+        self::assertSame($metadata, $article->getMetadata());        
         self::assertSame($url, $article->getUrl());
         self::assertGreaterThan(0, count($logger->flushLog()));
     }

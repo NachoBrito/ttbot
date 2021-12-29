@@ -10,7 +10,7 @@ use DomainException;
 
 /**
  * 
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class LanguageNotSupportedException extends DomainException{

@@ -11,7 +11,7 @@ use NachoBrito\TTBot\Article\Domain\Model\Language;
 
 /**
  * 
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class LandrokLanguageDetector implements LanguageDetector {

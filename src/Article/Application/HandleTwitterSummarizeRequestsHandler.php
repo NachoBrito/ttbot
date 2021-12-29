@@ -77,6 +77,9 @@ class HandleTwitterSummarizeRequestsHandler implements CommandHandler {
             /** @var Tweet $mention */
             $this->logger->info("Processing mention " . $mention->getId());
 
+            //VALIDATE
+            
+            
             $url = $this->findUrlToSummarize($mention);
             if (!$url) {
                 $this->logger->info("Didn't find any url to summarize.");

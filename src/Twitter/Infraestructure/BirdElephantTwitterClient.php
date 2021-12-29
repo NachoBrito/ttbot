@@ -11,7 +11,7 @@ use NachoBrito\TTBot\Twitter\Domain\TwitterClient;
 
 /**
  * 
- *
+ * @codeCoverageIgnore
  * @author nacho
  */
 class BirdElephantTwitterClient implements TwitterClient {
