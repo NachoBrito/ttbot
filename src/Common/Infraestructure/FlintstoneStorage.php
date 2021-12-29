@@ -51,7 +51,11 @@ class FlintstoneStorage implements Storage {
      * @return void
      */
     public function set(string $key, string $value): void {
-        $this->getDB()->set($key, $value);        
+        $this->getDB()->set($key, $value);         
+    }
+
+    public function delete(string $key): void {
+        $this->getDB()->delete($key);
     }
 
 }

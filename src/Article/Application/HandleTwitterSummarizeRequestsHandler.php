@@ -9,6 +9,7 @@ use NachoBrito\TTBot\Article\Domain\ArticleSummarizer;
 use NachoBrito\TTBot\Article\Domain\URLExtractor;
 use NachoBrito\TTBot\Common\Domain\Bus\Command\CommandHandler;
 use NachoBrito\TTBot\Common\Domain\Logger;
+use NachoBrito\TTBot\Common\Domain\RateLimiter;
 use NachoBrito\TTBot\Twitter\Application\TwitterService;
 use NachoBrito\TTBot\Twitter\Domain\Model\Tweet;
 use NachoBrito\TTBot\Twitter\Domain\Model\TweetReference;
@@ -49,22 +50,41 @@ class HandleTwitterSummarizeRequestsHandler implements CommandHandler {
      * @var URLExtractor
      */
     private $urlExtractor;
+    
+    /**
+     * 
+     * @var RateLimiter
+     */
+    private $rateLimiter;
 
-    public function __construct(TwitterService $twitter, Logger $logger, ArticleSummarizer $summarizer, ArticleLoader $loader, URLExtractor $urlExtractor) {
+
+    /**
+     * 
+     * @param TwitterService $twitter
+     * @param Logger $logger
+     * @param ArticleSummarizer $summarizer
+     * @param ArticleLoader $loader
+     * @param URLExtractor $urlExtractor
+     * @param RateLimiter $rateLimiter
+     */
+    public function __construct(TwitterService $twitter, Logger $logger, ArticleSummarizer $summarizer, ArticleLoader $loader, URLExtractor $urlExtractor, RateLimiter $rateLimiter) {
         $this->twitter = $twitter;
         $this->logger = $logger;
         $this->summarizer = $summarizer;
         $this->loader = $loader;
         $this->urlExtractor = $urlExtractor;
+        $this->rateLimiter = $rateLimiter;
     }
 
-    /**
+        /**
      * 
      * @param HandleTwitterSummarizeRequestsCommand $cmd
      * @return type
      */
     public function __invoke(HandleTwitterSummarizeRequestsCommand $cmd) {
 
+        $action = self::class;
+                
         $mentions = $this->twitter->getNewMentions();
         $num = count($mentions);
         if (!$num) {
@@ -77,13 +97,20 @@ class HandleTwitterSummarizeRequestsHandler implements CommandHandler {
             /** @var Tweet $mention */
             $this->logger->info("Processing mention " . $mention->getId());
 
-            //VALIDATE
+            $allowed = $this
+                    ->rateLimiter
+                    ->actionAllowed($mention->getAuthorId(), $action);
             
+            if(!$allowed)
+            {
+                $this->logger->info("Action not allowed. User {$mention->getAuthorUsername()} has exceeded rate limit.");
+                continue;                
+            }
             
             $url = $this->findUrlToSummarize($mention);
             if (!$url) {
                 $this->logger->info("Didn't find any url to summarize.");
-                return;
+                continue;
             }
 
             $this->logger->info("Found url: $url. Sumarizing");

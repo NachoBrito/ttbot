@@ -7,12 +7,12 @@ namespace NachoBrito\TTBot\Article\Apoplication;
 use DateTime;
 use NachoBrito\TTBot\Article\Application\HandleTwitterSummarizeRequestsCommand;
 use NachoBrito\TTBot\Article\Application\HandleTwitterSummarizeRequestsHandler;
-use NachoBrito\TTBot\Article\Application\SummarizeUrlCommand;
 use NachoBrito\TTBot\Article\Domain\ArticleLoader;
 use NachoBrito\TTBot\Article\Domain\ArticleSummarizer;
 use NachoBrito\TTBot\Article\Domain\Model\Article;
 use NachoBrito\TTBot\Article\Domain\Model\ArticleSummary;
 use NachoBrito\TTBot\Article\Domain\URLExtractor;
+use NachoBrito\TTBot\Common\Domain\RateLimiter;
 use NachoBrito\TTBot\Common\Infraestructure\BufferedLogger;
 use NachoBrito\TTBot\Twitter\Application\TwitterService;
 use NachoBrito\TTBot\Twitter\Domain\Model\Tweet;
@@ -71,9 +71,19 @@ class HandleTwitterSummarizeRequestsHandlerTest extends TestCase {
                 ->expects($this->never())
                 ->method('getUrls');
 
+        $rateLimiter = $this
+                ->getMockBuilder(RateLimiter::class)
+                ->getMock()
+                ;
+                
+        $rateLimiter
+                ->expects($this->any())
+                ->method('actionAllowed')
+                ->willReturn(TRUE);
+        
         $logger = new BufferedLogger();
 
-        $handler = new HandleTwitterSummarizeRequestsHandler($twitter, $logger, $summarizer, $loader, $urlExtractor);
+        $handler = new HandleTwitterSummarizeRequestsHandler($twitter, $logger, $summarizer, $loader, $urlExtractor, $rateLimiter);
 
         $handler($command);
     }
@@ -160,7 +170,18 @@ class HandleTwitterSummarizeRequestsHandlerTest extends TestCase {
 
         $logger = new BufferedLogger();
 
-        $handler = new HandleTwitterSummarizeRequestsHandler($twitter, $logger, $summarizer, $loader, $urlExtractor);
+
+        $rateLimiter = $this
+                ->getMockBuilder(RateLimiter::class)
+                ->getMock()
+                ;
+                
+        $rateLimiter
+                ->expects($this->any())
+                ->method('actionAllowed')
+                ->willReturn(TRUE);
+        
+        $handler = new HandleTwitterSummarizeRequestsHandler($twitter, $logger, $summarizer, $loader, $urlExtractor, $rateLimiter);
 
         $handler($command);       
         
@@ -220,7 +241,16 @@ class HandleTwitterSummarizeRequestsHandlerTest extends TestCase {
 
         $logger = new BufferedLogger();
 
-        $handler = new HandleTwitterSummarizeRequestsHandler($twitter, $logger, $summarizer, $loader, $urlExtractor);
+        $rateLimiter = $this
+                ->getMockBuilder(RateLimiter::class)
+                ->getMock()
+                ;
+                
+        $rateLimiter
+                ->expects($this->any())
+                ->method('actionAllowed')
+                ->willReturn(TRUE);
+        $handler = new HandleTwitterSummarizeRequestsHandler($twitter, $logger, $summarizer, $loader, $urlExtractor, $rateLimiter);
 
         $handler($command);
     }
