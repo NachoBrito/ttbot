@@ -1,2 +1,2 @@
 # Threader BOT
-![Code Coverage Badge](./badge.svg) 
+![Code Coverage Badge](./clover_badge.svg) 
