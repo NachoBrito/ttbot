@@ -211,6 +211,10 @@ class TwitterServiceTest extends TestCase {
             public function getStorage() {
                 return $this->storage;
             }
+
+            public function delete(string $key): void {
+                unset($this->storage[$key]);
+            }
         };
         return $storage;
     }
