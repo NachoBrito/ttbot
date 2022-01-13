@@ -6,6 +6,9 @@
     "config": {
         "optimize-autoloader": true,
         "sort-packages": true
+    },
+    "scripts": {
+        "test": "phpunit"
     },    
     "autoload": {
         "psr-4": {
