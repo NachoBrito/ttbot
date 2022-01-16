@@ -40,7 +40,7 @@ Once the summary is generated, a new collection of tweets is published as a thre
 
 ## Technical details
 
-The project architecture is heavily inspired by [A. Cockburn's hexagonal architecture](http://alistair.cockburn.us/hexagonal-architecture/), plus some commonly used patterns:
+The project's architecture is heavily inspired by [A. Cockburn's hexagonal architecture](http://alistair.cockburn.us/hexagonal-architecture/), plus some commonly used patterns:
 
 - [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection): Current implementation uses Symfony's container. See [scripts/inc/services.php](https://github.com/NachoBrito/ttbot/blob/main/scripts/inc/services.php) for runtime setup.
 - [Command Query Responsibility Segregation](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation#Command_query_responsibility_separation): The application is accessed "from the outside" with either a Command or a Query. The current implementation uses Symfony's Messenger component for dispatching. See [SymfonyCommandBus.php](https://github.com/NachoBrito/ttbot/blob/main/src/Common/Infraestructure/Symfony/SymfonyCommandBus.php), [SymfonyQueryBus.php](https://github.com/NachoBrito/ttbot/blob/main/src/Common/Infraestructure/Symfony/SymfonyQueryBus.php)
