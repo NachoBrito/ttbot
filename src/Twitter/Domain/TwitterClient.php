@@ -7,7 +7,7 @@ use stdClass;
 
 /**
  *
- * @author administrador
+ * @author nacho
  */
 interface TwitterClient {
     

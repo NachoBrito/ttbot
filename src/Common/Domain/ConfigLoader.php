@@ -5,7 +5,7 @@ namespace NachoBrito\TTBot\Common\Domain;
 
 /**
  *
- * @author administrador
+ * @author nacho
  */
 interface ConfigLoader {
     

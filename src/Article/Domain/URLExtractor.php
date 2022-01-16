@@ -4,7 +4,7 @@ namespace NachoBrito\TTBot\Article\Domain;
 
 /**
  *
- * @author administrador
+ * @author nacho
  */
 interface URLExtractor {
     /**

@@ -6,7 +6,7 @@ use NachoBrito\TTBot\Common\Domain\Model\HTTPResponse;
 
 /**
  *
- * @author administrador
+ * @author nacho
  */
 interface HTTPClient {
 
