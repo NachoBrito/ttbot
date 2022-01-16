@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1642320530">
-  <project timestamp="1642320530">
+<coverage generated="1642320731">
+  <project timestamp="1642320731">
     <file name="/home/runner/work/ttbot/ttbot/src/Article/Application/HandleTwitterSummarizeRequestsCommand.php">
       <class name="NachoBrito\TTBot\Article\Application\HandleTwitterSummarizeRequestsCommand" namespace="global">
         <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
