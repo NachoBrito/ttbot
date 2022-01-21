@@ -27,7 +27,8 @@ class ArticleSummary {
      */
     public function __construct(Article $article, array $sentences) {
         $this->article = $article;
-        $this->sentences = $sentences;
+
+        $this->sentences = $this->filterSentences($sentences);
     }
 
     /**
@@ -72,6 +73,20 @@ class ArticleSummary {
         $this->sentences = $sentences;
 
         return $this;
+    }
+
+    /**
+     * 
+     * @param type $sentences
+     */
+    private function filterSentences($sentences) {
+        //Remove strings that come from <ul> conversion
+        $filtered = array_filter($sentences, function ($sentence) {
+            $first = substr(trim($sentence), 0, 1);
+            return $first !== '*';
+        });
+        
+        return $filtered;
     }
 
 }

@@ -118,7 +118,7 @@ class TextRankSummarizer implements ArticleSummarizer {
          *
          * @return array An array from sentences.
          */
-        return $summarize->getSummarize(
+        $sentences = $summarize->getSummarize(
                         $scores,
                         $graph,
                         $text,
@@ -126,6 +126,9 @@ class TextRankSummarizer implements ArticleSummarizer {
                         $maximumSentences,
                         Summarize::GET_ALL_IMPORTANT
         );
+        
+        
+        return $sentences;
     }
 
 }

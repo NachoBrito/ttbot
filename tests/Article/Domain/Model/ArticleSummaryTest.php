@@ -57,4 +57,14 @@ class ArticleSummaryTest extends TestCase {
         self::assertSame($o, $this->object->getSentences());
     }
 
+    
+    public function testRemoveBulletPoints()
+    {
+        $a1 = new Article();
+        $a2 = ["test1", "test2", " * test 3"];
+        $o = new ArticleSummary($a1, $a2);
+        self::assertSame($a1, $o->getArticle());
+        self::assertSame(["test1", "test2"], $o->getSentences());
+    }
+    
 }
