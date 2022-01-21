@@ -21,7 +21,7 @@ class ReadabilityTextExtractor implements HTMLTextExtractor{
      * @return string
      */
     public function extractText(string $html): string {
-        $configuration = new Configuration();
+        $configuration = new Configuration();        
         $readability = new Readability($configuration);
         $readability->parse($html);
         $content = $readability->getContent();

@@ -29,6 +29,9 @@ use PhpScience\TextRank\Tool\Summarize;
  */
 class TextRankSummarizer implements ArticleSummarizer {
 
+    //Ignore short words.
+    const MINIMUM_WORD_LENGTH = 3;
+    
     /**
      * 
      * @param Article $article
@@ -73,14 +76,21 @@ class TextRankSummarizer implements ArticleSummarizer {
      */
     private function getSummary(string $rawText, StopWordsAbstract $stopWords): array {
         $parser = new Parser();
-        $parser->setMinimumWordLength(3);
+        $parser->setMinimumWordLength(self::MINIMUM_WORD_LENGTH);        
         $parser->setRawText($rawText);
 
         $parser->setStopWords($stopWords);
 
         $text = $parser->parse();
         
-        $maximumSentences = (int) (count($text->getSentences()) * 0.1);
+        /*
+         * IMPORTANT: 
+         * summarize->getSummarize will return the most relevant sentences 
+         * in text, in order or appearance, *not by relevance*. Using a value 
+         * too big here will cause non-relevant sentences that appear at the 
+         * beginning of the document to be included in the summary.
+         */
+        $maximumSentences = (int) getenv('THREADS_MAX_TWEETS');
 
         $graph = new Graph();
         $graph->createGraph($text);

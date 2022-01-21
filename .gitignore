@@ -8,3 +8,4 @@ composer.phar
 /scripts/.env.local
 /storage.dat
 /log/
+/src/dummy.php
