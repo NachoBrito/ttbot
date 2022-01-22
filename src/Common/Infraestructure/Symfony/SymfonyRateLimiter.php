@@ -6,6 +6,7 @@ namespace NachoBrito\TTBot\Common\Infraestructure\Symfony;
 
 use NachoBrito\TTBot\Common\Domain\RateLimiter;
 use NachoBrito\TTBot\Common\Domain\Storage;
+use RuntimeException;
 use Symfony\Component\RateLimiter\LimiterInterface;
 use Symfony\Component\RateLimiter\LimiterStateInterface;
 use Symfony\Component\RateLimiter\RateLimiterFactory;
@@ -45,11 +46,19 @@ class SymfonyRateLimiter implements RateLimiter {
      */
     private function getLimiterFactory(string $actionId) {
         if (!isset($this->limiters[$actionId])) {
+            $limit = (int) getenv('RATE_LIMIT_MAX');
+            $interval = getenv('RATE_LIMIT_INTERVAL');  
+            
+            if(!$limit || !$interval)
+            {
+                throw new RuntimeException("Rate Limiter not configured!");
+            }
+            
             $factory = new RateLimiterFactory([
                 'id' => $actionId,
                 'policy' => 'token_bucket',
-                'limit' => 10,
-                'rate' => ['interval' => '24 hour'],
+                'limit' => $limit,
+                'rate' => ['interval' => $interval],
                     ], $this->storage);
             $this->limiters[$actionId] = $factory;
         }
