@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1642789402">
-  <project timestamp="1642789402">
+<coverage generated="1642838615">
+  <project timestamp="1642838615">
     <file name="/home/runner/work/ttbot/ttbot/src/Article/Application/HandleTwitterSummarizeRequestsCommand.php">
       <class name="NachoBrito\TTBot\Article\Application\HandleTwitterSummarizeRequestsCommand" namespace="global">
         <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
@@ -687,9 +687,9 @@
     </file>
     <file name="/home/runner/work/ttbot/ttbot/src/Common/Infraestructure/Symfony/SymfonyRateLimiter.php">
       <class name="NachoBrito\TTBot\Common\Infraestructure\Symfony\SymfonyRateLimiter" namespace="global">
-        <metrics complexity="4" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        <metrics complexity="6" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </class>
-      <metrics loc="74" ncloc="46" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      <metrics loc="83" ncloc="55" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
     <file name="/home/runner/work/ttbot/ttbot/src/Common/Infraestructure/Symfony/SymfonyRateLimiterStorage.php">
       <class name="NachoBrito\TTBot\Common\Infraestructure\Symfony\SymfonyRateLimiterStorage" namespace="global">
@@ -972,6 +972,6 @@
       </class>
       <metrics loc="113" ncloc="76" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <metrics files="71" loc="3533" ncloc="2327" classes="29" methods="116" coveredmethods="93" conditionals="0" coveredconditionals="0" statements="476" coveredstatements="401" elements="592" coveredelements="494"/>
+    <metrics files="71" loc="3542" ncloc="2336" classes="29" methods="116" coveredmethods="93" conditionals="0" coveredconditionals="0" statements="476" coveredstatements="401" elements="592" coveredelements="494"/>
   </project>
 </coverage>
