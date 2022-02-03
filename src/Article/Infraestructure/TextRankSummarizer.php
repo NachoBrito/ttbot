@@ -128,7 +128,7 @@ class TextRankSummarizer implements ArticleSummarizer {
         );
         
         
-        return $sentences;
+        return array_unique($sentences);
     }
 
 }

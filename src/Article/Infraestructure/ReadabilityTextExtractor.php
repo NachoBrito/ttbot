@@ -6,7 +6,9 @@ namespace NachoBrito\TTBot\Article\Infraestructure;
 
 use andreskrey\Readability\Configuration;
 use andreskrey\Readability\Readability;
+use Exception;
 use NachoBrito\TTBot\Article\Domain\HTMLTextExtractor;
+
 
 /**
  * 
@@ -26,6 +28,10 @@ class ReadabilityTextExtractor implements HTMLTextExtractor{
         $readability->parse($html);
         $content = $readability->getContent();
         
+        if(!$content)
+        {
+            throw new Exception("Empty output from Readability for input markup!");
+        }
         return $content;
     }
 

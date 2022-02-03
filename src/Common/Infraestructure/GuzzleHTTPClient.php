@@ -37,7 +37,7 @@ class GuzzleHTTPClient implements HTTPClient {
      * @return string
      */
     public function get(string $url, array $headers = []): HTTPResponse {
-        $client = new Client([]);
+        $client = new Client(['verify' =>false]);
         $options = [
             'headers' => $headers
         ];
