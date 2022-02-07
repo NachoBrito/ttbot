@@ -38,7 +38,7 @@ class TextRankSummarizer implements ArticleSummarizer {
      * @return ArticleSummary
      */
     public function summarize(Article $article): ArticleSummary {
-        $stopWords = $this->getStopWords($article);
+        $stopWords = $this->getStopWords($article);        
         $result = $this->getSummary($article->getText(), $stopWords);
         return new ArticleSummary($article, $result);
     }
@@ -128,7 +128,7 @@ class TextRankSummarizer implements ArticleSummarizer {
         );
         
         
-        return $sentences;
+        return array_unique($sentences);
     }
 
 }

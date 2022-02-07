@@ -5,7 +5,6 @@ declare( strict_types=1 );
 
 namespace NachoBrito\TTBot\Article\Infraestructure;
 
-use Html2Text\Html2Text;
 use NachoBrito\TTBot\Article\Domain\HTMLTextExtractor;
 
 
@@ -23,7 +22,7 @@ class HTML2TextExtractor implements HTMLTextExtractor{
      */
     public function extractText(string $html): string {
         
-        $o = new Html2Text($html, [
+        $o = new CustomHTML2Text($html, [
             'do_links' => 'none',
             'width' => 0
         ]);    
