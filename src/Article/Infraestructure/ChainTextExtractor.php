@@ -59,8 +59,7 @@ class ChainTextExtractor implements HTMLTextExtractor {
         $text = $this->html2text->extractText($content);
 
         $decoded_entities = html_entity_decode($text);
-        
-        die(json_encode($decoded_entities));
+                
         return $decoded_entities;
     }
 
