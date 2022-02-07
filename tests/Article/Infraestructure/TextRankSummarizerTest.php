@@ -13,6 +13,7 @@ use PHPUnit\Framework\TestCase;
 class TextRankSummarizerTest extends TestCase {
     public function testEdgeCase1()
     {
+        putenv("THREADS_MAX_TWEETS=5");
         $case = json_decode(file_get_contents(__DIR__ . '/edge_case_1.json'), TRUE);
         $article = (new Article())
                 ->setLanguage($case['language'])
@@ -24,6 +25,6 @@ class TextRankSummarizerTest extends TestCase {
         $summarizer = new TextRankSummarizer();
         
         $summary = $summarizer->summarize($article);        
-        self::assertCount(5, $summary->getSentences());
+        self::assertCount(4, $summary->getSentences());
     }
 }

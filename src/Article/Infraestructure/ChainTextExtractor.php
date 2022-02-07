@@ -60,6 +60,7 @@ class ChainTextExtractor implements HTMLTextExtractor {
 
         $decoded_entities = html_entity_decode($text);
         
+        die(json_encode($decoded_entities));
         return $decoded_entities;
     }
 
